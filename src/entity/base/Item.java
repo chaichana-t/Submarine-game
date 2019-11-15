@@ -1,5 +1,8 @@
 package entity.base;
 
+import entity.Mysubmarine;
+import entity.base.Entity;
+import entity.base.Hitable;
 import javafx.scene.shape.Rectangle;
 
 public abstract class Item extends Entity implements Hitable{
@@ -7,7 +10,6 @@ public abstract class Item extends Entity implements Hitable{
 	private boolean isCalled;
 	private boolean isActivated;
 	private Rectangle item;
-	
 	
 	public Item() {
 		super();
@@ -18,6 +20,7 @@ public abstract class Item extends Entity implements Hitable{
 	@Override
 	public void checkIfCollide(Hitable x) {
 		// TODO Auto-generated method stub
+		
 		
 	}
 
