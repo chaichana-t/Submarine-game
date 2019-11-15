@@ -10,5 +10,11 @@ public abstract class Entity {
 	
 	public abstract void setSpawnPosition();
 	
-	public abstract void move();
+	public abstract void moveUp();
+	
+	public abstract void moveDown();
+	
+	public abstract void moveLeft();
+	
+	public abstract void moveRight();
 }
