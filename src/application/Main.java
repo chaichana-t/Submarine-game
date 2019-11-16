@@ -22,24 +22,34 @@ public class Main extends Application{
 		Scene gameScene = new Scene(gamePane,1600,900);
 		
 		gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-			
+
 			public void handle(KeyEvent event) {
-				if (event.getCode() == KeyCode.RIGHT ) {
-					SUBMARINE.moveRight();
-					SUBMARINE.getSUBMARINEMOVING_ANIMATION().play();
+				SUBMARINE.checkIfOutOfBorder();
+				if(!SUBMARINE.isOutOfBorderRight()) {
+					if (event.getCode() == KeyCode.RIGHT ) {
+						SUBMARINE.moveRight();
+						SUBMARINE.getSUBMARINEMOVING_ANIMATION().play();
+					}
 				}
-				if (event.getCode() == KeyCode.LEFT) {
-					SUBMARINE.moveLeft();
-					SUBMARINE.getSUBMARINEMOVING_ANIMATION().play();
+				if(!SUBMARINE.isOutOfBorderLeft()) {
+					if (event.getCode() == KeyCode.LEFT) {
+						SUBMARINE.moveLeft();
+						SUBMARINE.getSUBMARINEMOVING_ANIMATION().play();
+					}
 				}
-				if (event.getCode() == KeyCode.UP) {
-					SUBMARINE.moveUp();
-					SUBMARINE.getSUBMARINEMOVING_ANIMATION().play();
+				if(!SUBMARINE.isOutOfBorderOn()) {
+					if (event.getCode() == KeyCode.UP) {
+						SUBMARINE.moveUp();
+						SUBMARINE.getSUBMARINEMOVING_ANIMATION().play();
+					}
 				}
-				if (event.getCode() == KeyCode.DOWN) {
-					SUBMARINE.moveDown();
-					SUBMARINE.getSUBMARINEMOVING_ANIMATION().play();
+				if(!SUBMARINE.isOutOfBorderUnder()) {
+					if (event.getCode() == KeyCode.DOWN) {
+						SUBMARINE.moveDown();
+						SUBMARINE.getSUBMARINEMOVING_ANIMATION().play();
+					}
 				}
+			
 			}
 		});
 		

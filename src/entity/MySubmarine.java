@@ -17,6 +17,10 @@ public class MySubmarine extends Submarine  {
 	public static Timeline SUBMARINEMOVING_ANIMATION;
 	private static final int VELOCITY = 10;
 	private Thread moveThread ;
+	private boolean isOutOfBorderRight;
+	private boolean isOutOfBorderLeft;
+	private boolean isOutOfBorderOn;
+	private boolean isOutOfBorderUnder;
 	
 	
 	
@@ -27,12 +31,36 @@ public class MySubmarine extends Submarine  {
 	}
 	
 	
-
+	public void checkIfOutOfBorder() {
+		if(submarineGroup.getLayoutX() > 1100) {
+			isOutOfBorderRight = true;
+		}
+		else {
+			isOutOfBorderRight = false;
+		}
+		if(submarineGroup.getLayoutX() < 0) {
+			isOutOfBorderLeft = true;
+		}
+		else {
+			isOutOfBorderLeft = false;
+		}
+		if(submarineGroup.getLayoutY() < 0 ) {
+			isOutOfBorderOn = true;
+		}
+		else {
+			isOutOfBorderOn = false;
+		}
+		if(submarineGroup.getLayoutY() > 600) {
+			isOutOfBorderUnder = true;
+		}
+		else {
+			isOutOfBorderUnder = false;
+		}
+	}
 	
 
 	@Override
 	public void setGc() {
-		
 		
 		normalSubmarine = Resloader.normalSubmarine;
 		movingSubmarine1 = Resloader.movingSubmarine1;
@@ -61,7 +89,6 @@ public class MySubmarine extends Submarine  {
 		}));
 	
 	}
-
 
 
 	@Override
@@ -156,6 +183,28 @@ public class MySubmarine extends Submarine  {
 	public static Timeline getSUBMARINEMOVING_ANIMATION() {
 		return SUBMARINEMOVING_ANIMATION;
 	}
+
+
+	public boolean isOutOfBorderRight() {
+		return isOutOfBorderRight;
+	}
+
+
+	public boolean isOutOfBorderLeft() {
+		return isOutOfBorderLeft;
+	}
+
+
+	public boolean isOutOfBorderOn() {
+		return isOutOfBorderOn;
+	}
+
+
+	public boolean isOutOfBorderUnder() {
+		return isOutOfBorderUnder;
+	}
+
+
 	
 	
 	
