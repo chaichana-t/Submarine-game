@@ -35,29 +35,26 @@ public class Game {
 		gameStage.setTitle("Submarine");
 		gameStage.setScene(gameScene);
 	}
-	
-	
-
-	
+		
 	private void createKeyListener() {
 		gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
 				if (event.getCode() == KeyCode.RIGHT ) {
 					SUBMARINE.moveRight();
-					SUBMARINE.getSUBMARINEMOVING_ANIMATION().play();;
+					SUBMARINE.getSubmarinMoving_Aniamtion().play();;
 				}
 				if (event.getCode() == KeyCode.LEFT) {
 					SUBMARINE.moveLeft();
-					SUBMARINE.getSUBMARINEMOVING_ANIMATION().play();
+					SUBMARINE.getSubmarinMoving_Aniamtion().play();
 				}
 				if (event.getCode() == KeyCode.UP) {
 					SUBMARINE.moveUp();
-					SUBMARINE.getSUBMARINEMOVING_ANIMATION().play();
+					SUBMARINE.getSubmarinMoving_Aniamtion().play();
 				}
 				if (event.getCode() == KeyCode.DOWN) {
 					SUBMARINE.moveDown();
-					SUBMARINE.getSUBMARINEMOVING_ANIMATION().play();
+					SUBMARINE.getSubmarinMoving_Aniamtion().play();
 				}
 				
 			}
@@ -65,8 +62,7 @@ public class Game {
 		gameScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
-				isPressJump = false;
-				trigger = false;
+				SUBMARINE.getSubmarinMoving_Aniamtion().stop();
 			}
 		});
 	}

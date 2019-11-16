@@ -1,14 +1,18 @@
 package entity.base;
 
 import entity.Missile;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 public abstract class Submarine extends Entity implements Shootable{
 	
-	protected boolean isHasShield;
+	
 	protected boolean isAlive;
 	protected int currentHealth;
 	protected boolean isCanGetItem;
@@ -18,6 +22,8 @@ public abstract class Submarine extends Entity implements Shootable{
 	protected ImageView movingSubmarine4;
 	protected ImageView normalSubmarine;
 	protected Group submarineGroup;
+	protected Timeline submarineMovingAnimation;
+	protected Thread moveThread ;
 
 	public Submarine() {
 		super();
@@ -31,14 +37,6 @@ public abstract class Submarine extends Entity implements Shootable{
 
 	public void setCurrentHealth(int currentHealth) {
 		this.currentHealth = currentHealth;
-	}
-
-	public void setHasShield(boolean isHasShield) {
-		this.isHasShield = isHasShield;
-	}
-
-	public boolean isHasShield() {
-		return isHasShield;
 	}
 
 	public boolean isAlive() {
@@ -55,30 +53,53 @@ public abstract class Submarine extends Entity implements Shootable{
 		return isCanGetItem;
 	}
 
-	@Override
-	public Missile shoot() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	public Group getSubmarine() {
 		return submarineGroup ;
 	}
 
 	public void setSize() {
-		movingSubmarine1.setFitHeight(30);
-		movingSubmarine1.setFitWidth(50);
-		movingSubmarine2.setFitHeight(30);
-		movingSubmarine2.setFitWidth(50);
-		movingSubmarine3.setFitHeight(30);
-		movingSubmarine3.setFitWidth(50);
-		movingSubmarine4.setFitHeight(30);
-		movingSubmarine4.setFitWidth(50);
+		movingSubmarine1.setFitHeight(160);
+		movingSubmarine1.setFitWidth(250);
+		movingSubmarine2.setFitHeight(160);
+		movingSubmarine2.setFitWidth(250);
+		movingSubmarine3.setFitHeight(160);
+		movingSubmarine3.setFitWidth(250);
+		movingSubmarine4.setFitHeight(160);
+		movingSubmarine4.setFitWidth(250);
 		
-		normalSubmarine.setFitHeight(30);
-		normalSubmarine.setFitWidth(50);
-		
-		
+		//normalSubmarine.setFitHeight(160);
+		//normalSubmarine.setFitWidth(250);	
 	}
+	
+	public void setSubmarine_Animation() {
+		submarineMovingAnimation = new Timeline();
+		submarineMovingAnimation.setCycleCount(Timeline.INDEFINITE);
+		submarineMovingAnimation.getKeyFrames().add(new KeyFrame(Duration.millis(200),(ActionEvent event) -> {
+			submarineGroup.getChildren().setAll(movingSubmarine1);
+		}));
+		submarineMovingAnimation.getKeyFrames().add(new KeyFrame(Duration.millis(400),(ActionEvent event) -> {
+			submarineGroup.getChildren().setAll(movingSubmarine2);
+		}));
+		submarineMovingAnimation.getKeyFrames().add(new KeyFrame(Duration.millis(600),(ActionEvent event) -> {
+			submarineGroup.getChildren().setAll(movingSubmarine3);
+		}));
+		submarineMovingAnimation.getKeyFrames().add(new KeyFrame(Duration.millis(800),(ActionEvent event) -> {
+			submarineGroup.getChildren().setAll(movingSubmarine4);
+		}));
+		submarineMovingAnimation.play();
+	}
+	
+	public Timeline getSubmarinMoving_Aniamtion() {
+		return submarineMovingAnimation;
+	}
+	
+	public abstract void moveUp();
+	
+	public abstract void moveDown();
+	
+	public abstract void moveLeft();
+	
+	public abstract void moveRight();
 
 }

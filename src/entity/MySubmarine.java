@@ -14,9 +14,10 @@ import resloader.Resloader;
 public class MySubmarine extends Submarine  {
 	
 	private static final int MAX_HEALTH = 3;
-	public static Timeline SUBMARINEMOVING_ANIMATION;
+	
 	private static final int VELOCITY = 10;
-	private Thread moveThread ;
+	
+	protected boolean isHasShield;
 	private boolean isOutOfBorderRight;
 	private boolean isOutOfBorderLeft;
 	private boolean isOutOfBorderOn;
@@ -25,14 +26,15 @@ public class MySubmarine extends Submarine  {
 	
 	
 	public MySubmarine() {
+		setSize();
 		this.currentHealth = 1;
 		this.isCanGetItem = true;
-		setSUBMARINEMOVING_ANIMATION();
+		setSubmarine_Animation();
 	}
 	
 	
 	public void checkIfOutOfBorder() {
-		if(submarineGroup.getLayoutX() > 1100) {
+		/*if(submarineGroup.getLayoutX() > 1100) {
 			isOutOfBorderRight = true;
 		}
 		else {
@@ -43,7 +45,7 @@ public class MySubmarine extends Submarine  {
 		}
 		else {
 			isOutOfBorderLeft = false;
-		}
+		}*/
 		if(submarineGroup.getLayoutY() < 0 ) {
 			isOutOfBorderOn = true;
 		}
@@ -62,39 +64,22 @@ public class MySubmarine extends Submarine  {
 	@Override
 	public void setGc() {
 		
-		normalSubmarine = Resloader.normalSubmarine;
+		//normalSubmarine = Resloader.normalSubmarine;
 		movingSubmarine1 = Resloader.movingSubmarine1;
 		movingSubmarine2 = Resloader.movingSubmarine2;
 		movingSubmarine3 = Resloader.movingSubmarine3;
 		movingSubmarine4 = Resloader.movingSubmarine4;
-		submarineGroup = new Group(normalSubmarine);
+		submarineGroup = new Group(movingSubmarine1);
 		
 	}
 	
 
-	public void setSUBMARINEMOVING_ANIMATION() {
-		SUBMARINEMOVING_ANIMATION = new Timeline();
-		SUBMARINEMOVING_ANIMATION.setCycleCount(Timeline.INDEFINITE);
-		SUBMARINEMOVING_ANIMATION.getKeyFrames().add(new KeyFrame(Duration.millis(200),(ActionEvent event) -> {
-			submarineGroup.getChildren().setAll(movingSubmarine1);
-		}));
-		SUBMARINEMOVING_ANIMATION.getKeyFrames().add(new KeyFrame(Duration.millis(400),(ActionEvent event) -> {
-			submarineGroup.getChildren().setAll(movingSubmarine2);
-		}));
-		SUBMARINEMOVING_ANIMATION.getKeyFrames().add(new KeyFrame(Duration.millis(600),(ActionEvent event) -> {
-			submarineGroup.getChildren().setAll(movingSubmarine3);
-		}));
-		SUBMARINEMOVING_ANIMATION.getKeyFrames().add(new KeyFrame(Duration.millis(800),(ActionEvent event) -> {
-			submarineGroup.getChildren().setAll(movingSubmarine4);
-		}));
-	
-	}
 
 
 	@Override
 	public void setSpawnPosition() {
-		submarineGroup.setLayoutX(300);
-		submarineGroup.setLayoutY(225);
+		submarineGroup.setLayoutX(200);
+		submarineGroup.setLayoutY(250);
 	}
 	
 	@Override
@@ -141,7 +126,6 @@ public class MySubmarine extends Submarine  {
 	@Override
 	public void moveLeft() {
 		moveThread = new Thread(new Runnable() {
-
 			@Override
 			public void run() {
 					try {
@@ -156,7 +140,6 @@ public class MySubmarine extends Submarine  {
 				}
 		});
 		moveThread.start();
-		
 	}
 	
 	@Override
@@ -180,9 +163,7 @@ public class MySubmarine extends Submarine  {
 		
 	}
 	
-	public static Timeline getSUBMARINEMOVING_ANIMATION() {
-		return SUBMARINEMOVING_ANIMATION;
-	}
+
 
 
 	public boolean isOutOfBorderRight() {
@@ -202,6 +183,19 @@ public class MySubmarine extends Submarine  {
 
 	public boolean isOutOfBorderUnder() {
 		return isOutOfBorderUnder;
+	}
+
+
+	@Override
+	public Missile shoot() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public boolean isEnemy() {
+		return false;
 	}
 
 

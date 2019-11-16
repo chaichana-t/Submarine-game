@@ -25,33 +25,41 @@ public class Main extends Application{
 
 			public void handle(KeyEvent event) {
 				SUBMARINE.checkIfOutOfBorder();
-				if(!SUBMARINE.isOutOfBorderRight()) {
+				/*if(!SUBMARINE.isOutOfBorderRight()) {
 					if (event.getCode() == KeyCode.RIGHT ) {
 						SUBMARINE.moveRight();
-						SUBMARINE.getSUBMARINEMOVING_ANIMATION().play();
+						SUBMARINE.getSubmarinMoving_Aniamtion().play();
 					}
 				}
 				if(!SUBMARINE.isOutOfBorderLeft()) {
 					if (event.getCode() == KeyCode.LEFT) {
 						SUBMARINE.moveLeft();
-						SUBMARINE.getSUBMARINEMOVING_ANIMATION().play();
+						SUBMARINE.getSubmarinMoving_Aniamtion().play();;
 					}
-				}
+				}*/
 				if(!SUBMARINE.isOutOfBorderOn()) {
 					if (event.getCode() == KeyCode.UP) {
 						SUBMARINE.moveUp();
-						SUBMARINE.getSUBMARINEMOVING_ANIMATION().play();
+						//SUBMARINE.getSubmarinMoving_Aniamtion().play();
 					}
 				}
 				if(!SUBMARINE.isOutOfBorderUnder()) {
 					if (event.getCode() == KeyCode.DOWN) {
 						SUBMARINE.moveDown();
-						SUBMARINE.getSUBMARINEMOVING_ANIMATION().play();
+						//SUBMARINE.getSubmarinMoving_Aniamtion().play();
 					}
 				}
 			
 			}
 		});
+		
+		/*gameScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent event) {
+				SUBMARINE.getSubmarinMoving_Aniamtion().;
+				
+			}
+		});*/
 		
 		primaryStage = new Stage();
 		primaryStage.setTitle("Submarine");
