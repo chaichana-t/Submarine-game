@@ -7,7 +7,6 @@ public abstract class Entity {
 		setSpawnPosition();
 	}
 	
-	public abstract boolean isEnemy();
 	
 	public abstract void setGc();
 	

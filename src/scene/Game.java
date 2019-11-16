@@ -9,6 +9,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import resloader.Resloader;
 
 
 public class Game {
@@ -21,6 +22,7 @@ public class Game {
 	public static boolean isPressJump, isGodMode, isAlive, trigger;
 	
 	public Game() {
+		Resloader.Load();
 		setScene();
 		createKeyListener();
 		
@@ -40,21 +42,30 @@ public class Game {
 		gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
+				SUBMARINE.checkIfOutOfBorder();
 				if (event.getCode() == KeyCode.RIGHT ) {
-					SUBMARINE.moveRight();
-					SUBMARINE.getSubmarinMoving_Aniamtion().play();;
+					if(!SUBMARINE.isOutOfBorderRight()) {
+						SUBMARINE.moveRight();
+						SUBMARINE.getSubmarinMoving_Aniamtion().play();;
+					}
 				}
 				if (event.getCode() == KeyCode.LEFT) {
-					SUBMARINE.moveLeft();
-					SUBMARINE.getSubmarinMoving_Aniamtion().play();
+					if(!SUBMARINE.isOutOfBorderLeft()) {
+						SUBMARINE.moveLeft();
+						SUBMARINE.getSubmarinMoving_Aniamtion().play();
+					}
 				}
 				if (event.getCode() == KeyCode.UP) {
-					SUBMARINE.moveUp();
-					SUBMARINE.getSubmarinMoving_Aniamtion().play();
+					if(!SUBMARINE.isOutOfBorderOn()) {
+						SUBMARINE.moveUp();
+						SUBMARINE.getSubmarinMoving_Aniamtion().play();
+					}
 				}
 				if (event.getCode() == KeyCode.DOWN) {
-					SUBMARINE.moveDown();
-					SUBMARINE.getSubmarinMoving_Aniamtion().play();
+					if(!SUBMARINE.isOutOfBorderUnder()) {
+						SUBMARINE.moveDown();
+						SUBMARINE.getSubmarinMoving_Aniamtion().play();
+					}
 				}
 				
 			}

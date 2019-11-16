@@ -16,14 +16,18 @@ public abstract class Submarine extends Entity implements Shootable{
 	protected boolean isAlive;
 	protected int currentHealth;
 	protected boolean isCanGetItem;
+	protected int velocity;
+	
 	protected ImageView movingSubmarine1;
 	protected ImageView movingSubmarine2;
 	protected ImageView movingSubmarine3;
 	protected ImageView movingSubmarine4;
 	protected ImageView normalSubmarine;
 	protected Group submarineGroup;
+	
 	protected Timeline submarineMovingAnimation;
-	protected Thread moveThread ;
+	protected Thread moveThread;
+	protected boolean isFacingRight;
 
 	public Submarine() {
 		super();
@@ -94,12 +98,86 @@ public abstract class Submarine extends Entity implements Shootable{
 		return submarineMovingAnimation;
 	}
 	
-	public abstract void moveUp();
+
+	public void moveUp() {
+		moveThread = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+					try {
+						for(int i = 0; i < 5;i++) {
+							submarineGroup.setLayoutY(submarineGroup.getLayoutY()-velocity);
+							Thread.sleep(15);
+						}
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+		});
+		moveThread.start();
+	}
 	
-	public abstract void moveDown();
 	
-	public abstract void moveLeft();
+	public void moveDown() {
+		moveThread = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+					try {
+						for(int i = 0; i < 5;i++) {
+							submarineGroup.setLayoutY(submarineGroup.getLayoutY()+velocity);
+							Thread.sleep(15);
+						}
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+		});
+		moveThread.start();
+	}
+		
 	
-	public abstract void moveRight();
+	
+	public void moveLeft() {
+		moveThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+					try {
+						for(int i = 0; i < 5;i++) {
+							submarineGroup.setLayoutX(submarineGroup.getLayoutX()-velocity);
+							Thread.sleep(15);
+						}
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+		});
+		moveThread.start();
+	}
+	
+	
+	public void moveRight() {
+		moveThread = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+					try {
+						for(int i = 0; i < 5;i++) {
+							submarineGroup.setLayoutX(submarineGroup.getLayoutX()+velocity);
+							Thread.sleep(15);
+						}
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+		});
+		moveThread.start();
+		
+	}
+
 
 }

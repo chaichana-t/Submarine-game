@@ -36,63 +36,20 @@ public class EnimiesSubmarine extends Submarine implements Hitable  {
 	}
 	
 	
-	@Override
-	public void moveUp() {
-		
-	}
-
-	@Override
-	public void moveDown() {
-		
-	}
-
-	
-	
-
-	@Override
+		@Override
 	public Missile shoot() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public void moveLeft() {
-		// TODO Auto-generated method stub
-		moveThread = new Thread(new Runnable() {
-			@Override
-			public void run() {
-					try {
-						for(int i = 0; i < 5;i++) {
-							submarineGroup.setLayoutX(submarineGroup.getLayoutX()-VELOCITY);
-							Thread.sleep(15);
-						}
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-		});
-		moveThread.start();
-		
-	}
-
-	@Override
-	public void moveRight() {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	@Override
 	public void checkIfCollide(Hitable x) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public boolean isEnemy() {
-		// TODO Auto-generated method stub
-		return true;
-	}
+
 	
 	
 
