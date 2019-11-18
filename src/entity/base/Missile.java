@@ -26,18 +26,8 @@ public abstract class Missile extends Entity implements Hitable,MovableinXaxis{
 		super();
 		this.startX = x;
 		this.startY = y;
-		isHit = false;
 	}
-	
-
-	
-	@Override
-	public void checkIfCollide(Hitable x) throws Exception {
-		// TODO Auto-generated method stub
 		
-		
-	}
-	
 	@Override
 	public void moveRight() {
 		// TODO Auto-generated method stub

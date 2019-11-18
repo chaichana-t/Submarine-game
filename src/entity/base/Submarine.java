@@ -29,6 +29,7 @@ public abstract class Submarine extends Entity implements Shootable,MovableinXax
 	public Submarine() {
 		super();
 		this.isAlive = true;
+		setSubmarine_Animation();
 		
 	}
 	
@@ -60,17 +61,17 @@ public abstract class Submarine extends Entity implements Shootable,MovableinXax
 	}
 
 	public void setSize() {
-		movingSubmarine1.setFitHeight(160);
-		movingSubmarine1.setFitWidth(250);
-		movingSubmarine2.setFitHeight(160);
-		movingSubmarine2.setFitWidth(250);
-		movingSubmarine3.setFitHeight(160);
-		movingSubmarine3.setFitWidth(250);
-		movingSubmarine4.setFitHeight(160);
-		movingSubmarine4.setFitWidth(250);
+		movingSubmarine1.setFitHeight(80);
+		movingSubmarine1.setFitWidth(125);
+		movingSubmarine2.setFitHeight(80);
+		movingSubmarine2.setFitWidth(125);
+		movingSubmarine3.setFitHeight(80);
+		movingSubmarine3.setFitWidth(125);
+		movingSubmarine4.setFitHeight(80);
+		movingSubmarine4.setFitWidth(125);
 		
-		normalSubmarine.setFitHeight(160);
-		normalSubmarine.setFitWidth(250);	
+		normalSubmarine.setFitHeight(80);
+		normalSubmarine.setFitWidth(125);	
 	}
 	
 	public void setSubmarine_Animation() {
@@ -79,13 +80,13 @@ public abstract class Submarine extends Entity implements Shootable,MovableinXax
 		submarineMovingAnimation.getKeyFrames().add(new KeyFrame(Duration.millis(200),(ActionEvent event) -> {
 			submarineGroup.getChildren().setAll(movingSubmarine1);
 		}));
-		submarineMovingAnimation.getKeyFrames().add(new KeyFrame(Duration.millis(400),(ActionEvent event) -> {
+		submarineMovingAnimation.getKeyFrames().add(new KeyFrame(Duration.millis(300),(ActionEvent event) -> {
 			submarineGroup.getChildren().setAll(movingSubmarine2);
 		}));
-		submarineMovingAnimation.getKeyFrames().add(new KeyFrame(Duration.millis(600),(ActionEvent event) -> {
+		submarineMovingAnimation.getKeyFrames().add(new KeyFrame(Duration.millis(400),(ActionEvent event) -> {
 			submarineGroup.getChildren().setAll(movingSubmarine3);
 		}));
-		submarineMovingAnimation.getKeyFrames().add(new KeyFrame(Duration.millis(800),(ActionEvent event) -> {
+		submarineMovingAnimation.getKeyFrames().add(new KeyFrame(Duration.millis(500),(ActionEvent event) -> {
 			submarineGroup.getChildren().setAll(movingSubmarine4);
 		}));
 		submarineMovingAnimation.play();
@@ -97,80 +98,21 @@ public abstract class Submarine extends Entity implements Shootable,MovableinXax
 
 	@Override
 	public void moveUp() {
-			moveThread = new Thread(new Runnable() {
-				@Override
-				public void run() {
-						try {
-							for(int i = 0; i < 5;i++) {
-								submarineGroup.setLayoutY(submarineGroup.getLayoutY()-velocity);
-								Thread.sleep(15);
-							}
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-			});
-			moveThread.start();
+		submarineGroup.setLayoutY(submarineGroup.getLayoutY()-velocity);
 	}
 		
 	@Override
-	public void MoveDown() {
-		moveThread = new Thread(new Runnable() {
-		@Override
-		public void run() {
-				try {
-					for(int i = 0; i < 5;i++) {
-						submarineGroup.setLayoutY(submarineGroup.getLayoutY()+velocity);
-						Thread.sleep(15);
-					}
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
-		moveThread.start();
+	public void moveDown() {
+		submarineGroup.setLayoutY(submarineGroup.getLayoutY()+velocity);
 	}
 
 	@Override
 	public void moveRight() {
-		// TODO Auto-generated method stub
-		moveThread = new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-					try {
-						for(int i = 0; i < 5;i++) {
-							submarineGroup.setLayoutX(submarineGroup.getLayoutX()+velocity);
-							Thread.sleep(15);
-						}
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-		});
-		moveThread.start();
+		submarineGroup.setLayoutX(submarineGroup.getLayoutX()+velocity);
 	}
 
 	@Override
 	public void moveLeft() {
-		// TODO Auto-generated method stub
-		moveThread = new Thread(new Runnable() {
-			@Override
-			public void run() {
-					try {
-						for(int i = 0; i < 5;i++) {
-							submarineGroup.setLayoutX(submarineGroup.getLayoutX()-velocity);
-							Thread.sleep(15);
-						}
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-		});
-		moveThread.start();
+		submarineGroup.setLayoutX(submarineGroup.getLayoutX()-velocity);
 	}
 }

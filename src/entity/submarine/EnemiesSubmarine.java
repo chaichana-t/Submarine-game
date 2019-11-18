@@ -41,6 +41,7 @@ public class EnemiesSubmarine extends Submarine implements Hitable  {
 		@Override
 	public Missile shoot() {
 		// TODO Auto-generated method stub
+		
 			
 		return null;
 	}
@@ -49,6 +50,7 @@ public class EnemiesSubmarine extends Submarine implements Hitable  {
 	@Override
 	public void checkIfCollide(Hitable x) throws Exception {
 		// TODO Auto-generated method stub
+	
 		
 	}
 

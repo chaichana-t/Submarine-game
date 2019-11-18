@@ -4,5 +4,5 @@ public interface MovableinYaxis {
 
 	public void moveUp();
 	
-	public void MoveDown();
+	public void moveDown();
 }
