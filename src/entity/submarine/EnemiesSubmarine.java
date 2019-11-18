@@ -15,8 +15,7 @@ public class EnemiesSubmarine extends Submarine implements Hitable  {
 	
 	public EnemiesSubmarine() {
 		super();
-		this.currentHealth = 10;
-		this.isCanGetItem = false;
+	
 	}
 
 	@Override

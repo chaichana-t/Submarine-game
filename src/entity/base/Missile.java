@@ -3,70 +3,75 @@ package entity.base;
 import entity.base.Entity;
 import entity.base.Hitable;
 import entity.base.Submarine;
+import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import resloader.Resloader;
 
 public abstract class Missile extends Entity implements Hitable,MovableinXaxis{
 	
-	protected int startX;
-	protected int startY;
-	protected static final int VELOCITY = 2;
+	protected double startX;
+	protected double startY;
+	protected static final int VELOCITY = 10;
 	protected boolean isHit;
-	protected boolean isFacingRight;
+	protected boolean isShooting;
+	private AnimationTimer TIMER;
+
 	
-	protected Thread moveThread;
-	
-	protected ImageView missile1;
-	protected ImageView missile2;
-	protected ImageView missile3;
-	protected Group missileGroup;
+	public Rectangle missile;
 	
 	
-	public Missile(int x,int y,boolean isFacingRight) {
+	public Missile(double x,double y) {
 		super();
 		this.startX = x;
 		this.startY = y;
+		setPosition();
+		TIMER = new AnimationTimer() {
+			@Override
+			public void handle(long arg0) {
+				// TODO Auto-generated method stub
+				moveRight();
+			}
+		};
+		TIMER.start();
 	}
 		
+	
+
+
+
+
+
+	@Override
+	public void setGc() {
+		// TODO Auto-generated method stub
+		missile = new Rectangle(20,20,Color.BLACK);
+	}
+
+
+
+	@Override
+	public void setPosition() {
+		// TODO Auto-generated method stub
+		missile.setLayoutX(startX);
+		missile.setLayoutY(startY);
+	}
+
+
+
+
+
 	@Override
 	public void moveRight() {
-		// TODO Auto-generated method stub
-		moveThread = new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-					try {
-						for(int i = 0; i < 5;i++) {
-							missileGroup.setLayoutX(missileGroup.getLayoutX()+VELOCITY);
-							Thread.sleep(15);
-						}
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-		});
-		moveThread.start();
+		missile.setLayoutX(missile.getLayoutX()+VELOCITY);
 	}
+	
+	
 
 	@Override
 	public void moveLeft() {
-		// TODO Auto-generated method stub
-		moveThread = new Thread(new Runnable() {
-			@Override
-			public void run() {
-					try {
-						for(int i = 0; i < 5;i++) {
-							missileGroup.setLayoutX(missileGroup.getLayoutX()-VELOCITY);
-							Thread.sleep(15);
-						}
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-		});
-		moveThread.start();
 	}
 
 }

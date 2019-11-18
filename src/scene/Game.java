@@ -1,6 +1,8 @@
 package scene;
 
 
+import entity.base.Missile;
+import entity.submarine.MyMissile;
 import entity.submarine.MySubmarine;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
@@ -20,49 +22,22 @@ public class Game {
 	private Scene gameScene;
 	public static Stage gameStage;
 
-	public static MySubmarine SUBMARINE;
-	private AnimationTimer TIMER;
-	private boolean up ;
-	private boolean down;
-	private boolean right;
-	private boolean left;
+	public MySubmarine submarine;
+	
 	
 	public Game() {
 		Resloader.LOAD();
 		setScene();
-		up= down =right =left = false;
 		createKeyListener();
-		TIMER = new AnimationTimer() {
-			
-			@Override
-			public void handle(long arg0) {
-				// TODO Auto-generated method stub
-				if(up) {
-					SUBMARINE.moveUp();
-				}
-				if(down) {
-					SUBMARINE.moveDown();
-					
-				}
-				if(left) {
-					SUBMARINE.moveLeft();
-					
-				}
-				if(right) {
-					SUBMARINE.moveRight();
-					
-				}
-			}
-		};
-		TIMER.start();
+		
 	}
 	
 	private void setScene() {
 		gamePane = new AnchorPane();
 		BackgroundImage bg = new BackgroundImage(new Image(ClassLoader.getSystemResource("bg.jpg").toString(),1000,550, false, true), null, null, null, null);
 		gamePane.setBackground(new Background(bg));
-		SUBMARINE = new MySubmarine();
-		gamePane.getChildren().add(SUBMARINE.getSubmarine());
+		submarine = new MySubmarine();
+		gamePane.getChildren().add(submarine.getSubmarine());
 		gameScene = new Scene(gamePane,1000,550);
 		gameStage = new Stage();
 		gameStage.setTitle("Submarine");
@@ -74,16 +49,20 @@ public class Game {
 			@Override
 			public void handle(KeyEvent event) {
 				if (event.getCode() == KeyCode.RIGHT ) {
-						right = true;
+						submarine.setPressedRight(true);
 				}
 				if (event.getCode() == KeyCode.LEFT) {
-					left = true;
+					submarine.setPressedLeft(true);
 				}
 				if (event.getCode() == KeyCode.UP) {
-					up = true;
+					submarine.setPressedUp(true);
 				}
 				if (event.getCode() == KeyCode.DOWN) {
-					down = true;
+					submarine.setPressedDown(true);
+				}
+				if (event.getCode() == KeyCode.SPACE) {
+					submarine.shoot();
+					gamePane.getChildren().add(submarine.shoot().missile);
 				}
 				
 			}
@@ -94,20 +73,21 @@ public class Game {
 			public void handle(KeyEvent event) {
 				// TODO Auto-generated method stub
 				if (event.getCode() == KeyCode.RIGHT ) {
-					right = false;
-			}
-			if (event.getCode() == KeyCode.LEFT) {
-				left = false;
-			}
-			if (event.getCode() == KeyCode.UP) {
-				up = false;
-			}
-			if (event.getCode() == KeyCode.DOWN) {
-				down = false;
-			}
+					submarine.setPressedRight(false);
+				}
+				if (event.getCode() == KeyCode.LEFT) {
+					submarine.setPressedLeft(false);
+				}
+				if (event.getCode() == KeyCode.UP) {
+					submarine.setPressedUp(false);
+				}
+				if (event.getCode() == KeyCode.DOWN) {
+					submarine.setPressedDown(false);
+				}
 				
 			}
 			
 		});
 	}
+	
 }
