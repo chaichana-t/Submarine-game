@@ -1,16 +1,13 @@
 package entity.base;
 
-import entity.Missile;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
-public abstract class Submarine extends Entity implements Shootable{
+public abstract class Submarine extends Entity implements Shootable,MovableinXaxis,MovableinYaxis{
 	
 	
 	protected boolean isAlive;
@@ -72,8 +69,8 @@ public abstract class Submarine extends Entity implements Shootable{
 		movingSubmarine4.setFitHeight(160);
 		movingSubmarine4.setFitWidth(250);
 		
-		//normalSubmarine.setFitHeight(160);
-		//normalSubmarine.setFitWidth(250);	
+		normalSubmarine.setFitHeight(160);
+		normalSubmarine.setFitWidth(250);	
 	}
 	
 	public void setSubmarine_Animation() {
@@ -97,69 +94,48 @@ public abstract class Submarine extends Entity implements Shootable{
 	public Timeline getSubmarinMoving_Aniamtion() {
 		return submarineMovingAnimation;
 	}
-	
 
+	@Override
 	public void moveUp() {
-		moveThread = new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-					try {
-						for(int i = 0; i < 5;i++) {
-							submarineGroup.setLayoutY(submarineGroup.getLayoutY()-velocity);
-							Thread.sleep(15);
+			moveThread = new Thread(new Runnable() {
+				@Override
+				public void run() {
+						try {
+							for(int i = 0; i < 5;i++) {
+								submarineGroup.setLayoutY(submarineGroup.getLayoutY()-velocity);
+								Thread.sleep(15);
+							}
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
 						}
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
 					}
-				}
-		});
-		moveThread.start();
-	}
-	
-	
-	public void moveDown() {
-		moveThread = new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-					try {
-						for(int i = 0; i < 5;i++) {
-							submarineGroup.setLayoutY(submarineGroup.getLayoutY()+velocity);
-							Thread.sleep(15);
-						}
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-		});
-		moveThread.start();
+			});
+			moveThread.start();
 	}
 		
-	
-	
-	public void moveLeft() {
+	@Override
+	public void MoveDown() {
 		moveThread = new Thread(new Runnable() {
-			@Override
-			public void run() {
-					try {
-						for(int i = 0; i < 5;i++) {
-							submarineGroup.setLayoutX(submarineGroup.getLayoutX()-velocity);
-							Thread.sleep(15);
-						}
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+		@Override
+		public void run() {
+				try {
+					for(int i = 0; i < 5;i++) {
+						submarineGroup.setLayoutY(submarineGroup.getLayoutY()+velocity);
+						Thread.sleep(15);
 					}
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
+			}
 		});
 		moveThread.start();
 	}
-	
-	
+
+	@Override
 	public void moveRight() {
+		// TODO Auto-generated method stub
 		moveThread = new Thread(new Runnable() {
 
 			@Override
@@ -176,8 +152,25 @@ public abstract class Submarine extends Entity implements Shootable{
 				}
 		});
 		moveThread.start();
-		
 	}
 
-
+	@Override
+	public void moveLeft() {
+		// TODO Auto-generated method stub
+		moveThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+					try {
+						for(int i = 0; i < 5;i++) {
+							submarineGroup.setLayoutX(submarineGroup.getLayoutX()-velocity);
+							Thread.sleep(15);
+						}
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+		});
+		moveThread.start();
+	}
 }
