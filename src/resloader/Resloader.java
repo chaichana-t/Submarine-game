@@ -1,5 +1,6 @@
 package resloader;
 
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Resloader {
@@ -10,7 +11,9 @@ public class Resloader {
 	public static ImageView movingSubmarine4;
 	public static ImageView normalSubmarine;
 	
-	public static ImageView missile;
+	public static Image missile;
+	
+	public static Image background;
 	
 	public static void LOAD() {
 		
@@ -19,7 +22,10 @@ public class Resloader {
 		movingSubmarine2 = new ImageView(ClassLoader.getSystemResource("idle2.png").toString());
 		movingSubmarine3 = new ImageView(ClassLoader.getSystemResource("idle3.png").toString());
 		movingSubmarine4 = new ImageView(ClassLoader.getSystemResource("idle4.png").toString());
-		missile = new ImageView(ClassLoader.getSystemResource("sub1.png").toString());
+		missile = new Image(ClassLoader.getSystemResource("sub1.png").toString());
+		
+		background = new Image(ClassLoader.getSystemResource("bg.jpg").toString());
+		
 	}
 	
 

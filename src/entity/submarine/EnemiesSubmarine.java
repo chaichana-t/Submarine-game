@@ -53,6 +53,12 @@ public class EnemiesSubmarine extends Submarine implements Hitable  {
 		
 	}
 
+	@Override
+	public void move() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 

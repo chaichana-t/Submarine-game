@@ -15,29 +15,33 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.stage.Stage;
 import resloader.Resloader;
+import ui.BackgroundPane;
 
 
 public class Game {
 	private AnchorPane gamePane;
 	private Scene gameScene;
 	public static Stage gameStage;
-
+	
+	private BackgroundPane background;
 	public MySubmarine submarine;
 	
+	private AnimationTimer animation;
 	
 	public Game() {
 		Resloader.LOAD();
 		setScene();
 		createKeyListener();
+		createGameLoop();
 		
 	}
 	
 	private void setScene() {
 		gamePane = new AnchorPane();
-		BackgroundImage bg = new BackgroundImage(new Image(ClassLoader.getSystemResource("bg.jpg").toString(),1000,550, false, true), null, null, null, null);
-		gamePane.setBackground(new Background(bg));
+		
+		background = new BackgroundPane();
 		submarine = new MySubmarine();
-		gamePane.getChildren().add(submarine.getSubmarine());
+		gamePane.getChildren().addAll(background.getRects()[0],background.getRects()[1],submarine.getSubmarine());
 		gameScene = new Scene(gamePane,1000,550);
 		gameStage = new Stage();
 		gameStage.setTitle("Submarine");
@@ -49,22 +53,25 @@ public class Game {
 			@Override
 			public void handle(KeyEvent event) {
 				if (event.getCode() == KeyCode.RIGHT ) {
-						submarine.setPressedRight(true);
+					
+					submarine.setPressedRight(true);
 				}
 				if (event.getCode() == KeyCode.LEFT) {
+					
 					submarine.setPressedLeft(true);
 				}
 				if (event.getCode() == KeyCode.UP) {
+				
 					submarine.setPressedUp(true);
 				}
 				if (event.getCode() == KeyCode.DOWN) {
+					
 					submarine.setPressedDown(true);
 				}
 				if (event.getCode() == KeyCode.SPACE) {
-					submarine.shoot();
-					gamePane.getChildren().add(submarine.shoot().missile);
+					
+					submarine.setShooting(true);
 				}
-				
 			}
 		});
 		gameScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
@@ -84,10 +91,31 @@ public class Game {
 				if (event.getCode() == KeyCode.DOWN) {
 					submarine.setPressedDown(false);
 				}
+				if (event.getCode() == KeyCode.SPACE) {
+					
+					submarine.setShooting(false);
+				}
 				
 			}
 			
 		});
+	}
+	
+	public void createGameLoop() {
+		animation = new AnimationTimer() {
+			@Override
+			public void handle(long arg0) {
+				// TODO Auto-generated method stub
+				submarine.move();
+				background.move();
+				if(submarine.isShooting()) {
+					submarine.shoot();
+					gamePane.getChildren().add(submarine.shoot().missile);
+				}
+				
+			}
+		};
+		animation.start();
 	}
 	
 }

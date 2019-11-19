@@ -17,7 +17,7 @@ public abstract class Missile extends Entity implements Hitable,MovableinXaxis{
 	protected static final int VELOCITY = 10;
 	protected boolean isHit;
 	protected boolean isShooting;
-	private AnimationTimer TIMER;
+	
 
 	
 	public Rectangle missile;
@@ -28,14 +28,7 @@ public abstract class Missile extends Entity implements Hitable,MovableinXaxis{
 		this.startX = x;
 		this.startY = y;
 		setPosition();
-		TIMER = new AnimationTimer() {
-			@Override
-			public void handle(long arg0) {
-				// TODO Auto-generated method stub
-				moveRight();
-			}
-		};
-		TIMER.start();
+		
 	}
 		
 	
@@ -47,7 +40,7 @@ public abstract class Missile extends Entity implements Hitable,MovableinXaxis{
 	@Override
 	public void setGc() {
 		// TODO Auto-generated method stub
-		missile = new Rectangle(20,20,Color.BLACK);
+		missile = new Rectangle(40,20,Color.BLACK);
 	}
 
 
@@ -72,6 +65,11 @@ public abstract class Missile extends Entity implements Hitable,MovableinXaxis{
 
 	@Override
 	public void moveLeft() {
+		missile.setLayoutX(missile.getLayoutX()-VELOCITY);
 	}
+	
+	
+	
+	
 
 }

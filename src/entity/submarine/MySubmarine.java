@@ -9,32 +9,36 @@ import resloader.Resloader;
 
 public class MySubmarine extends Submarine {
 	
-	private AnimationTimer TIMER;
 	public MyMissile missile;
 	
 	private boolean isPressedUp ;
 	private boolean isPressedDown;
 	private boolean isPressedRight;
 	private boolean isPressedLeft;
+	private boolean isShooting;
+	
+	private boolean isCanUp;
+	private boolean isCanDown;
+	private boolean isCanRight;
+	private boolean isCanLeft;
 	
 	
 	
 	public MySubmarine() {
 		super();
 		this.velocity = 5;
-		isPressedUp = isPressedDown = isPressedRight = isPressedLeft = false;
-		smoothMove();
+		isCanUp = isCanDown = isCanRight = isCanLeft = true;
+		isPressedUp = isPressedDown = isPressedRight = isPressedLeft = isShooting = false;
 	}
 
 	@Override
 	public Missile shoot() {
 		// TODO Auto-generated method stub
-		return new MyMissile(submarineGroup.getLayoutX()+62.5,submarineGroup.getLayoutY()+40); 
+		return new MyMissile(submarineGroup.getLayoutX()+92.5,submarineGroup.getLayoutY()+50); 
 	}
 
 	@Override
 	public void setGc() {
-		// TODO Auto-generated method stub
 		movingSubmarine1 = Resloader.movingSubmarine1;
 		movingSubmarine2 = Resloader.movingSubmarine2;
 		movingSubmarine3 = Resloader.movingSubmarine3;
@@ -53,31 +57,16 @@ public class MySubmarine extends Submarine {
 		
 	}
 
-	public void smoothMove() {
-		TIMER = new AnimationTimer() {
-			@Override
-			public void handle(long arg0) {
-				// TODO Auto-generated method stub
-				if(isPressedUp) {
-					moveUp();
-				}
-				if(isPressedDown) {
-					moveDown();
-					
-				}
-				if(isPressedLeft) {
-					moveLeft();
-					
-				}
-				if(isPressedRight) {
-					moveRight();
-					
-				}
-			}
-		};
-		TIMER.start();
+	
+	
+
+	public boolean isShooting() {
+		return isShooting;
 	}
 
+	public void setShooting(boolean isShooting) {
+		this.isShooting = isShooting;
+	}
 
 	public void setPressedUp(boolean isPressedUp) {
 		this.isPressedUp = isPressedUp;
@@ -94,6 +83,54 @@ public class MySubmarine extends Submarine {
 	public void setPressedLeft(boolean isPressedLeft) {
 		this.isPressedLeft = isPressedLeft;
 	}
+
+	@Override
+	public void move() {
+		// TODO Auto-generated method stub
+		checkIsCanMove();
+		if(isPressedUp && isCanUp) {
+			moveUp();
+		}
+		if(isPressedDown && isCanDown) {
+			moveDown();
+			
+		}
+		if(isPressedLeft && isCanLeft) {
+			moveLeft();
+			
+		}
+		if(isPressedRight && isCanRight) {
+			moveRight();
+			
+		}
+		
+	}
+	
+	public void checkIsCanMove() {
+		if(submarineGroup.getLayoutX() < 0) {
+			isCanLeft =  false;
+		}else {
+			isCanLeft = true;
+		}
+		if(submarineGroup.getLayoutX() > 850) {
+			isCanRight =  false;
+		}else {
+			isCanRight = true;
+		}
+		if(submarineGroup.getLayoutY() > 450) {
+			isCanDown =  false;
+		}else {
+			isCanDown = true;
+		}
+		if(submarineGroup.getLayoutY() < 100) {
+			isCanUp =  false;
+		}else {
+			isCanUp = true;
+		}
+		
+	}
+	
+	
 
 	
 	
