@@ -101,7 +101,6 @@ public class Game {
 					submarine.setPressedDown(false);
 				}
 				if (event.getCode() == KeyCode.SPACE) {
-					
 					submarine.setShooting(false);
 				}	
 			}		
@@ -109,12 +108,34 @@ public class Game {
 	}
 	
 	public void createGameLoop() {
-		animation = new AnimationTimer() {
+		Thread thread = new Thread(new Runnable() {
 			@Override
-			public void handle(long arg0) {
+			public void run() {
+				// TODO Auto-generated method stub
+				try {
+					while (true) {
+						Thread.interrupted();
+						clock = true;
+						Thread.sleep(15);
+						clock = false;
+						Thread.sleep(100);
+					}
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		
+		});
+		thread.start();
+		
+		animation = new AnimationTimer() {
+	
+			@Override
+			public void handle(long arg0) {        
 				submarine.move();
 				background.move();
-				if(submarine.isShooting()) {
+				if(submarine.isShooting() && clock) {
 					MyMissile m = new MyMissile(submarine.getSubmarine().getLayoutX()+120,submarine.getSubmarine().getLayoutY()+45);
 					submarine.shoot(m);
 					gamePane.getChildren().add(m.missile);
