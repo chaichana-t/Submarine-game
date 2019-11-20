@@ -14,7 +14,7 @@ public abstract class Missile extends Entity implements Hitable{
 	
 	protected double startX;
 	protected double startY;
-	protected static final int VELOCITY = 1;
+	protected static final int VELOCITY = 20;
 	protected boolean isHit;
 	protected boolean isShooting;
 	

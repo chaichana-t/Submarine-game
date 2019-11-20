@@ -115,7 +115,7 @@ public class Game {
 				submarine.move();
 				background.move();
 				if(submarine.isShooting()) {
-					MyMissile m = new MyMissile(submarine.getSubmarine().getLayoutX(),submarine.getSubmarine().getLayoutY());
+					MyMissile m = new MyMissile(submarine.getSubmarine().getLayoutX()+120,submarine.getSubmarine().getLayoutY()+45);
 					submarine.shoot(m);
 					gamePane.getChildren().add(m.missile);
 					
