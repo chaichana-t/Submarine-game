@@ -1,7 +1,9 @@
 package entity.base;
 
+import entity.submarine.MyMissile;
+
 public interface Shootable {
 	
-	public Missile shoot();
+	 public void shoot(MyMissile m);
 
 }

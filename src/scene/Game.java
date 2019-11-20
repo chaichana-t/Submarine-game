@@ -1,32 +1,41 @@
 package scene;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import entity.base.Missile;
 import entity.submarine.MyMissile;
 import entity.submarine.MySubmarine;
 import javafx.animation.AnimationTimer;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
 import javafx.stage.Stage;
 import resloader.Resloader;
 import ui.BackgroundPane;
 
 
 public class Game {
-	private AnchorPane gamePane;
+	
+
+	
+	
+	
+	private static AnchorPane gamePane;
 	private Scene gameScene;
 	public static Stage gameStage;
+	
+	private boolean isAlive;
 	
 	private BackgroundPane background;
 	public MySubmarine submarine;
 	
 	private AnimationTimer animation;
+	private boolean clock;
 	
 	public Game() {
 		Resloader.LOAD();
@@ -68,7 +77,7 @@ public class Game {
 					
 					submarine.setPressedDown(true);
 				}
-				if (event.getCode() == KeyCode.SPACE) {
+				if (event.getCode() == KeyCode.SPACE) {	
 					
 					submarine.setShooting(true);
 				}
@@ -94,10 +103,8 @@ public class Game {
 				if (event.getCode() == KeyCode.SPACE) {
 					
 					submarine.setShooting(false);
-				}
-				
-			}
-			
+				}	
+			}		
 		});
 	}
 	
@@ -105,12 +112,13 @@ public class Game {
 		animation = new AnimationTimer() {
 			@Override
 			public void handle(long arg0) {
-				// TODO Auto-generated method stub
 				submarine.move();
 				background.move();
 				if(submarine.isShooting()) {
-					submarine.shoot();
-					gamePane.getChildren().add(submarine.shoot().missile);
+					MyMissile m = new MyMissile(submarine.getSubmarine().getLayoutX(),submarine.getSubmarine().getLayoutY());
+					submarine.shoot(m);
+					gamePane.getChildren().add(m.missile);
+					
 				}
 				
 			}
@@ -118,4 +126,9 @@ public class Game {
 		animation.start();
 	}
 	
+
 }
+
+	
+	
+

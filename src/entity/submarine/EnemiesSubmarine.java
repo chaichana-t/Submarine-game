@@ -38,11 +38,10 @@ public class EnemiesSubmarine extends Submarine implements Hitable  {
 	
 	
 		@Override
-	public Missile shoot() {
+	public void shoot() {
+		
 		// TODO Auto-generated method stub
 		
-			
-		return null;
 	}
 
 	

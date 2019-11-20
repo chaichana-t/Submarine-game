@@ -10,11 +10,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import resloader.Resloader;
 
-public abstract class Missile extends Entity implements Hitable,MovableinXaxis{
+public abstract class Missile extends Entity implements Hitable{
 	
 	protected double startX;
 	protected double startY;
-	protected static final int VELOCITY = 10;
+	protected static final int VELOCITY = 1;
 	protected boolean isHit;
 	protected boolean isShooting;
 	
@@ -31,12 +31,6 @@ public abstract class Missile extends Entity implements Hitable,MovableinXaxis{
 		
 	}
 		
-	
-
-
-
-
-
 	@Override
 	public void setGc() {
 		// TODO Auto-generated method stub
@@ -56,14 +50,13 @@ public abstract class Missile extends Entity implements Hitable,MovableinXaxis{
 
 
 
-	@Override
+
 	public void moveRight() {
 		missile.setLayoutX(missile.getLayoutX()+VELOCITY);
 	}
 	
 	
 
-	@Override
 	public void moveLeft() {
 		missile.setLayoutX(missile.getLayoutX()-VELOCITY);
 	}

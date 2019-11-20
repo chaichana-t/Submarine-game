@@ -3,9 +3,9 @@ package entity.submarine;
 import entity.base.Hitable;
 import entity.base.Missile;
 
-public class enimiesMissile extends Missile{
+public class EnemiesMissile extends Missile{
 
-	public enimiesMissile(double x,double y) {
+	public EnemiesMissile(double x,double y) {
 		super(x,y);
 	}
 

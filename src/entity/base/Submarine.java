@@ -1,6 +1,5 @@
 package entity.base;
 
-import exception.OutOfBorderException;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -8,7 +7,7 @@ import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
-public abstract class Submarine extends Entity implements Shootable,MovableinXaxis,MovableinYaxis{
+public abstract class Submarine extends Entity implements Shootable{
 	
 	
 	protected boolean isAlive;
@@ -72,22 +71,19 @@ public abstract class Submarine extends Entity implements Shootable,MovableinXax
 
 
 	
-	@Override
+
 	public void moveUp() {
 		submarineGroup.setLayoutY(submarineGroup.getLayoutY()-velocity);
 	}
 		
-	@Override
 	public void moveDown() {
 		submarineGroup.setLayoutY(submarineGroup.getLayoutY()+velocity);
 	}
 
-	@Override
 	public void moveRight() {
 		submarineGroup.setLayoutX(submarineGroup.getLayoutX()+velocity);
 	}
 
-	@Override
 	public void moveLeft() {
 		submarineGroup.setLayoutX(submarineGroup.getLayoutX()-velocity);
 

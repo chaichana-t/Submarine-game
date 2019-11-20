@@ -1,15 +1,18 @@
 package entity.submarine;
 
-import entity.base.Missile;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
 import entity.base.Submarine;
-import exception.OutOfBorderException;
-import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
 import resloader.Resloader;
 
 public class MySubmarine extends Submarine {
 	
-	public MyMissile missile;
+	
+	private List<MyMissile> missiles = new ArrayList<MyMissile>();
 	
 	private boolean isPressedUp ;
 	private boolean isPressedDown;
@@ -30,11 +33,12 @@ public class MySubmarine extends Submarine {
 		isCanUp = isCanDown = isCanRight = isCanLeft = true;
 		isPressedUp = isPressedDown = isPressedRight = isPressedLeft = isShooting = false;
 	}
-
+	
+	
+	
 	@Override
-	public Missile shoot() {
-		// TODO Auto-generated method stub
-		return new MyMissile(submarineGroup.getLayoutX()+92.5,submarineGroup.getLayoutY()+50); 
+	public void shoot(MyMissile m) {
+		m.move();
 	}
 
 	@Override
@@ -43,16 +47,14 @@ public class MySubmarine extends Submarine {
 		movingSubmarine2 = Resloader.movingSubmarine2;
 		movingSubmarine3 = Resloader.movingSubmarine3;
 		movingSubmarine4 = Resloader.movingSubmarine4;
-		submarineGroup = new Group(movingSubmarine1);
-
-		
+		submarineGroup = new Group(movingSubmarine1);		
 	}
 
 	@Override
 	public void setPosition() {
 		// TODO Auto-generated method stub
-		submarineGroup.setLayoutX(575);
-		submarineGroup.setLayoutY(300);
+		submarineGroup.setLayoutX(0);
+		submarineGroup.setLayoutY(250);
 
 		
 	}
