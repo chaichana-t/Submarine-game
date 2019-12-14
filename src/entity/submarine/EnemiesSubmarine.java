@@ -22,7 +22,7 @@ public class EnemiesSubmarine extends Submarine implements Hitable {
 		// TODO Auto-generated method stub
 
 	}
-
+	
 	@Override
 	public void setPosition() {
 		// TODO Auto-generated method stub
@@ -30,20 +30,19 @@ public class EnemiesSubmarine extends Submarine implements Hitable {
 			randomNumber = randomGenerator.nextInt(20) * 20;
 			enemySubmarine[i].setLayoutX(1100);
 			enemySubmarine[i].setLayoutY(-randomNumber);
-
 		}
 	}
 
 	@Override
 	public void checkIfCollide(Hitable x) throws Exception {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void move() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override

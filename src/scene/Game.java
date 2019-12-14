@@ -106,8 +106,9 @@ public class Game {
 				try {
 					while (true) {
 						clock = true;
-						TimeUnit.SECONDS.sleep(20);
+						Thread.sleep(20);
 						clock = false;
+						Thread.sleep(100);
 					}
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block

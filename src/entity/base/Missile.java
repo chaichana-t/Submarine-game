@@ -7,7 +7,7 @@ public abstract class Missile extends Entity implements Hitable {
 
 	protected double startX;
 	protected double startY;
-	protected static final int VELOCITY = 5;
+	protected static final int VELOCITY = 10;
 	protected boolean isHit;
 	protected boolean isShooting;
 
@@ -41,5 +41,6 @@ public abstract class Missile extends Entity implements Hitable {
 	public void moveLeft() {
 		missile.setLayoutX(missile.getLayoutX() - VELOCITY);
 	}
+
 
 }

@@ -10,10 +10,15 @@ public class Resloader {
 	public static ImageView movingSubmarine3;
 	public static ImageView movingSubmarine4;
 	public static ImageView normalSubmarine;
+	public static ImageView enermySubmarine;
 
 	public static Image missile;
 
 	public static Image background;
+	
+	public static ImageView play;
+	public static ImageView howToPlay;
+	public static ImageView exit;
 
 	public static void LOAD() {
 
@@ -24,6 +29,10 @@ public class Resloader {
 		missile = new Image(ClassLoader.getSystemResource("missile.png").toString());
 
 		background = new Image(ClassLoader.getSystemResource("bg.jpg").toString());
+		
+		play = new ImageView(ClassLoader.getSystemResource("play_button.png").toString());
+		howToPlay = new ImageView(ClassLoader.getSystemResource("howtoplay_button.png").toString());
+		exit = new ImageView(ClassLoader.getSystemResource("exit_button.png").toString());
 
 	}
 
