@@ -13,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import resloader.Resloader;
 import ui.BackgroundPane;
+import ui.PointsPane;
 
 public class Game {
 
@@ -23,6 +24,8 @@ public class Game {
 
 	private BackgroundPane background;
 	public MySubmarine submarine;
+
+	public static PointsPane pointsLabel;
 
 	private AnimationTimer animation;
 	private boolean clock;
@@ -39,7 +42,8 @@ public class Game {
 		gamePane = new AnchorPane();
 		background = new BackgroundPane();
 		submarine = new MySubmarine();
-		gamePane.getChildren().addAll(background.getRects()[0], background.getRects()[1], submarine.getSubmarine());
+		pointsLabel = new PointsPane();
+		gamePane.getChildren().addAll(background.getRects()[0], background.getRects()[1], submarine.getSubmarine(),pointsLabel.getPointsLabel());
 		gameScene = new Scene(gamePane, 1000, 550);
 		
 	}
@@ -132,5 +136,6 @@ public class Game {
 		};
 		animation.start();
 	}
+
 
 }
