@@ -12,7 +12,7 @@ public class MenuButton extends Button {
 	private static final int BUTTON_HEIGHT = 45;
 	private static final int BUTTON_WIDTH = 190;
 
-	private final String BUTTON_PRESSED_STYLE = "-fx-background-color: transparent; -fx-background-image: url('"
+	private final String BUTTON_PRESSED_STYLE = " -fx-background-color: transparent; -fx-background-image: url('"
 			+ ClassLoader.getSystemResource("blue_button04.png").toString() + "');";
 	private final String BUTTON_FREE_STYLE = "-fx-background-color: transparent; -fx-background-image: url('"
 			+ ClassLoader.getSystemResource("blue_button05.png").toString() + "');";

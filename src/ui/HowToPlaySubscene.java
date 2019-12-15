@@ -20,15 +20,16 @@ public class HowToPlaySubscene extends MenuSubscene {
 	}
 	
 	private void createBackButton() {
-		backButton = new MenuButton("BACK");
+		backButton = new MenuButton("X");
 		backButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				moveSubScene();
 			}
 		});
-		backButton.setLayoutX(100);
-		backButton.setLayoutY(300);
+		backButton.setPrefSize(45, 45);
+		backButton.setLayoutX(0);
+		backButton.setLayoutY(0);
 	}
 
 }

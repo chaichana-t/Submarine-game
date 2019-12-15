@@ -69,6 +69,8 @@ public class Menu {
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				howTo.moveSubScene();
+				System.out.println("HowToPlaySubscene");
+				
 			}
 			
 		});
@@ -86,6 +88,7 @@ public class Menu {
 				// TODO Auto-generated method stub
 				new Game();
 				Main.MAIN_WINDOW.setScene(Game.gameScene);
+				System.out.println("GameStart");
 			}
 			
 		});
