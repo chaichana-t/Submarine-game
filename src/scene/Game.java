@@ -17,8 +17,7 @@ import ui.BackgroundPane;
 public class Game {
 
 	private static AnchorPane gamePane;
-	private Scene gameScene;
-	public static Stage gameStage;
+	public static Scene gameScene;
 
 	private boolean isAlive;
 
@@ -38,14 +37,11 @@ public class Game {
 
 	private void setScene() {
 		gamePane = new AnchorPane();
-
 		background = new BackgroundPane();
 		submarine = new MySubmarine();
 		gamePane.getChildren().addAll(background.getRects()[0], background.getRects()[1], submarine.getSubmarine());
 		gameScene = new Scene(gamePane, 1000, 550);
-		gameStage = new Stage();
-		gameStage.setTitle("Submarine");
-		gameStage.setScene(gameScene);
+		
 	}
 
 	private void createKeyListener() {
