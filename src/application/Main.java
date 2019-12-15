@@ -5,7 +5,6 @@ import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import resloader.Resloader;
-import scene.Game;
 import scene.Menu;
 
 public class Main extends Application {

@@ -2,13 +2,13 @@
 package scene;
 
 import application.Main;
-import entity.submarine.MyMissile;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import ui.BackgroundPane;
+import ui.HowToPlaySubscene;
 import ui.base.MenuButton;
 
 public class Menu {
@@ -27,11 +27,13 @@ public class Menu {
 	public final static int MENU_BUTTONS_START_X = 400;
 	public final static int MENU_BUTTONS_START_Y = 400;
 	
+	private HowToPlaySubscene howTo = new HowToPlaySubscene(400, 400);
+	
 	public Menu() {
 		setScene();
 		createLoop();
 		createButton();
-		
+		menuPane.getChildren().add(howTo);
 	
 	}
 	
@@ -60,7 +62,16 @@ public class Menu {
 	}
 	
 	private void createHowToButton() {
-		howtoButton = new MenuButton("HOWTOPLAY");
+		howtoButton = new MenuButton("HOW TO PLAY");
+		howtoButton.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				howTo.moveSubScene();
+			}
+			
+		});
 		howtoButton.setLayoutX(MENU_BUTTONS_START_X - 300);
 		howtoButton.setLayoutY(MENU_BUTTONS_START_Y);
 		menuPane.getChildren().add(howtoButton);

@@ -30,9 +30,6 @@ public class Resloader {
 
 		background = new Image(ClassLoader.getSystemResource("bg.jpg").toString());
 		
-		play = new ImageView(ClassLoader.getSystemResource("play_button.png").toString());
-		howToPlay = new ImageView(ClassLoader.getSystemResource("howtoplay_button.png").toString());
-		exit = new ImageView(ClassLoader.getSystemResource("exit_button.png").toString());
 
 	}
 

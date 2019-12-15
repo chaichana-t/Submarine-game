@@ -9,7 +9,7 @@ import javafx.scene.text.Font;
 
 public class MenuButton extends Button {
 
-	private static final int BUTTON_HEIGHT = 49;
+	private static final int BUTTON_HEIGHT = 45;
 	private static final int BUTTON_WIDTH = 190;
 
 	private final String BUTTON_PRESSED_STYLE = "-fx-background-color: transparent; -fx-background-image: url('"
@@ -38,7 +38,7 @@ public class MenuButton extends Button {
 
 	private void setButtonReleasedStyle() {
 		setStyle(BUTTON_FREE_STYLE);
-		setPrefHeight(49);
+		setPrefHeight(45);
 		setLayoutY(getLayoutY() - 4);
 	}
 
