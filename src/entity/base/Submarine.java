@@ -16,7 +16,6 @@ public abstract class Submarine extends Entity implements Shootable {
 	protected ImageView movingSubmarine2;
 	protected ImageView movingSubmarine3;
 	protected ImageView movingSubmarine4;
-	protected ImageView normalSubmarine;
 	protected Group submarineGroup;
 
 	protected Timeline submarineMovingAnimation;
@@ -44,23 +43,7 @@ public abstract class Submarine extends Entity implements Shootable {
 		movingSubmarine4.setFitWidth(125);
 	}
 
-	public void setSubmarine_Animation() {
-		submarineMovingAnimation = new Timeline();
-		submarineMovingAnimation.setCycleCount(Timeline.INDEFINITE);
-		submarineMovingAnimation.getKeyFrames().add(new KeyFrame(Duration.millis(200), (ActionEvent event) -> {
-			submarineGroup.getChildren().setAll(movingSubmarine1);
-		}));
-		submarineMovingAnimation.getKeyFrames().add(new KeyFrame(Duration.millis(400), (ActionEvent event) -> {
-			submarineGroup.getChildren().setAll(movingSubmarine2);
-		}));
-		submarineMovingAnimation.getKeyFrames().add(new KeyFrame(Duration.millis(600), (ActionEvent event) -> {
-			submarineGroup.getChildren().setAll(movingSubmarine3);
-		}));
-		submarineMovingAnimation.getKeyFrames().add(new KeyFrame(Duration.millis(800), (ActionEvent event) -> {
-			submarineGroup.getChildren().setAll(movingSubmarine4);
-		}));
-		submarineMovingAnimation.play();
-	}
+	public abstract void setSubmarine_Animation(); 
 
 	public Timeline getSubmarinMoving_Aniamtion() {
 		return submarineMovingAnimation;

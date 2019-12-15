@@ -88,6 +88,7 @@ public class Menu {
 				// TODO Auto-generated method stub
 				new Game();
 				Main.MAIN_WINDOW.setScene(Game.gameScene);
+				animation.stop();
 				System.out.println("GameStart");
 			}
 			

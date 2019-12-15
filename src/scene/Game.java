@@ -1,7 +1,10 @@
 package scene;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import entity.submarine.EnemySubmarine;
 import entity.submarine.MyMissile;
 import entity.submarine.MySubmarine;
 import javafx.animation.AnimationTimer;
@@ -24,8 +27,9 @@ public class Game {
 
 	private BackgroundPane background;
 	public MySubmarine submarine;
-
 	public static PointsPane pointsLabel;
+
+	public static List<EnemySubmarine> enemySubmarines;
 
 	private AnimationTimer animation;
 	private boolean clock;
@@ -37,13 +41,23 @@ public class Game {
 		createGameLoop();
 
 	}
+	private void addEnimies() {
+		enemySubmarines = new ArrayList<EnemySubmarine>();
+		for(int i=0;i<Setting.ENIEMIESSUBMARINE_NUMBER;i++) {
+			enemySubmarines.add(new EnemySubmarine());
+		}
+	}
 
 	private void setScene() {
+		addEnimies();
 		gamePane = new AnchorPane();
 		background = new BackgroundPane();
 		submarine = new MySubmarine();
 		pointsLabel = new PointsPane();
 		gamePane.getChildren().addAll(background.getRects()[0], background.getRects()[1], submarine.getSubmarine(),pointsLabel.getPointsLabel());
+		for(EnemySubmarine enemy:enemySubmarines) {
+			gamePane.getChildren().add(enemy.getSubmarine());
+		}
 		gameScene = new Scene(gamePane, 1000, 550);
 		
 	}
@@ -97,6 +111,12 @@ public class Game {
 			}
 		});
 	}
+	
+	private void moveEnemy() {
+		for(int i = 0;i<Setting.ENIEMIESSUBMARINE_NUMBER;i++) {
+			enemySubmarines[i].move();
+		}
+	}
 
 	public void createGameLoop() {
 		Thread thread = new Thread(new Runnable() {
@@ -131,7 +151,8 @@ public class Game {
 					submarine.shoot(m);
 					gamePane.getChildren().add(m.missile);
 				}
-
+				//moveEnemy();
+				
 			}
 		};
 		animation.start();

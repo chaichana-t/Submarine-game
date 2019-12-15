@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entity.base.Submarine;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.scene.Group;
+import javafx.util.Duration;
 import resloader.Resloader;
 
 public class MySubmarine extends Submarine {
-
-	private List<MyMissile> missiles = new ArrayList<MyMissile>();
+;
 
 	private boolean isPressedUp;
 	private boolean isPressedDown;
@@ -31,7 +34,7 @@ public class MySubmarine extends Submarine {
 
 	@Override
 	public void shoot(MyMissile m) {
-		if (m.missile.getLayoutX() < 500) {
+		if (m.missile.getLayoutX() < 1000) {
 			m.move();
 		}
 	}
@@ -121,6 +124,26 @@ public class MySubmarine extends Submarine {
 			isCanUp = true;
 		}
 
+	}
+
+	@Override
+	public void setSubmarine_Animation() {{
+		submarineMovingAnimation = new Timeline();
+		submarineMovingAnimation.setCycleCount(Timeline.INDEFINITE);
+		submarineMovingAnimation.getKeyFrames().add(new KeyFrame(Duration.millis(200), (ActionEvent event) -> {
+			submarineGroup.getChildren().setAll(movingSubmarine1);
+		}));
+		submarineMovingAnimation.getKeyFrames().add(new KeyFrame(Duration.millis(400), (ActionEvent event) -> {
+			submarineGroup.getChildren().setAll(movingSubmarine2);
+		}));
+		submarineMovingAnimation.getKeyFrames().add(new KeyFrame(Duration.millis(600), (ActionEvent event) -> {
+			submarineGroup.getChildren().setAll(movingSubmarine3);
+		}));
+		submarineMovingAnimation.getKeyFrames().add(new KeyFrame(Duration.millis(800), (ActionEvent event) -> {
+			submarineGroup.getChildren().setAll(movingSubmarine4);
+		}));
+		submarineMovingAnimation.play();
+	}
 	}
 
 }
