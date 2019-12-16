@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Rectangle;
 import resloader.Resloader;
 import ui.BackgroundPane;
 import ui.DeadSubscene;
@@ -81,7 +82,7 @@ public class Game {
 
 					submarine.setPressedDown(true);
 				}
-				if (event.getCode() == KeyCode.SPACE && trigger == false) {
+				if (event.getCode() == KeyCode.SPACE && trigger == false && isAlive) {
 					trigger = true;
 					submarine.shoot();
 				}

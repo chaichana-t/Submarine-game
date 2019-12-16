@@ -37,7 +37,7 @@ public class Enemy extends Entity implements Hitable{
 		}
 	}
 
-	@Override
+	@Override  
 	public void setPosition() {
 		// TODO Auto-generated method stub
 		for(int i = 0;i < Setting.ENEMY_NUMBER;i++) {

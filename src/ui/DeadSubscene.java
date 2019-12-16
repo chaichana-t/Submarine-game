@@ -3,6 +3,7 @@ package ui;
 import application.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.text.Font;
 import scene.Game;
 import scene.Menu;
 import ui.base.HeaderLabel;
@@ -63,6 +64,7 @@ public class DeadSubscene extends MenuSubscene{
 		highestScoreLabel.setLayoutX(150);
 		highestScoreLabel.setLayoutY(60);
 		InfoLabel highestScore = new InfoLabel(String.valueOf(PointsPane.highestPoints));
+		highestScore.setFont(Font.loadFont(ClassLoader.getSystemResource("kenvector_future.ttf").toString(), 35));
 		highestScore.setPrefHeight(49);
 		highestScore.setPrefWidth(190);
 		highestScore.setLayoutX(150);
@@ -75,6 +77,7 @@ public class DeadSubscene extends MenuSubscene{
 		scoreLabel.setLayoutX(150);
 		scoreLabel.setLayoutY(210);
 		InfoLabel score = new InfoLabel(String.valueOf(PointsPane.points));
+		score.setFont(Font.loadFont(ClassLoader.getSystemResource("kenvector_future.ttf").toString(), 30));
 		score.setPrefHeight(49);
 		score.setPrefWidth(190);
 		score.setLayoutX(150);
