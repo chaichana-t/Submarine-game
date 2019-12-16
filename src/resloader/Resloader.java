@@ -2,6 +2,8 @@ package resloader;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class Resloader {
 
@@ -20,6 +22,8 @@ public class Resloader {
 	public static ImageView play;
 	public static ImageView howToPlay;
 	public static ImageView exit;
+	
+	public static MediaPlayer menuBackgroundMusic;
 
 	public static void LOAD() {
 
@@ -33,6 +37,7 @@ public class Resloader {
 
 		background = new Image(ClassLoader.getSystemResource("bg.jpg").toString());
 		
+		//menuBackgroundMusic = new MediaPlayer(new Media(ClassLoader.getSystemResource("MenuBackgroundMusic.mp3").toString()));
 
 	}
 

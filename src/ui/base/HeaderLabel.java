@@ -25,7 +25,7 @@ public class HeaderLabel extends Label {
 	}
 
 	private void setLabelFont() {
-		setFont(Font.loadFont(ClassLoader.getSystemResource("kenvector_future.ttf").toString(), 20));
+		setFont(Font.loadFont(ClassLoader.getSystemResource("kenvector_future.ttf").toString(), 25));
 	}
 
 }

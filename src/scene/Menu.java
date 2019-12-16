@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import resloader.Resloader;
 import ui.BackgroundPane;
 import ui.HowToPlaySubscene;
 import ui.base.MenuButton;
@@ -32,10 +33,12 @@ public class Menu {
 	private HowToPlaySubscene howTo = new HowToPlaySubscene(400, 400);
 	
 	public Menu() {
+		//Resloader.menuBackgroundMusic.play();
 		setScene();
 		createLoop();
 		createButton();
 		menuPane.getChildren().add(howTo);
+		
 	
 	}
 	
@@ -88,6 +91,7 @@ public class Menu {
 			@Override
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
+				//Resloader.menuBackgroundMusic.stop();
 				new Game();
 				Main.MAIN_WINDOW.setScene(Game.gameScene);
 				animation.stop();

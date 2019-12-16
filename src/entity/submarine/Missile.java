@@ -62,6 +62,7 @@ public class Missile extends Entity implements Hitable {
 					Game.gamePane.getChildren().remove(missile);
 					stop();
 				}
+				if(!Game.isAlive) Game.gamePane.getChildren().remove(missile);
 				
 				
 			}
