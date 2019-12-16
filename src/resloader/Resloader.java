@@ -10,7 +10,8 @@ public class Resloader {
 	public static ImageView movingSubmarine3;
 	public static ImageView movingSubmarine4;
 	public static ImageView normalSubmarine;
-	public static ImageView enemySubmarine;
+	
+	public static Image enemy;
 
 	public static Image missile;
 
@@ -28,7 +29,7 @@ public class Resloader {
 		movingSubmarine4 = new ImageView(ClassLoader.getSystemResource("idle4.png").toString());
 		missile = new Image(ClassLoader.getSystemResource("missile.png").toString());
 
-		enemySubmarine = new ImageView(ClassLoader.getSystemResource("missile.png").toString());
+		enemy = new Image(ClassLoader.getSystemResource("missile.png").toString());
 
 		background = new Image(ClassLoader.getSystemResource("bg.jpg").toString());
 		

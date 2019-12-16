@@ -21,7 +21,9 @@ public class Menu {
 	private MenuButton startButton;
 	private MenuButton exitButton;
 	private MenuButton howtoButton;
+	
 	private BackgroundPane background;
+	
 	private AnimationTimer animation;
 
 	public final static int MENU_BUTTONS_START_X = 400;

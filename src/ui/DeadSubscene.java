@@ -1,5 +1,78 @@
 package ui;
 
-public class DeadSubscene {
+import application.Main;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import scene.Game;
+import scene.Menu;
+import ui.base.HeaderLabel;
+import ui.base.MenuButton;
+import ui.base.MenuSubscene;
 
+public class DeadSubscene extends MenuSubscene{
+	
+	
+	private MenuButton backButton;
+	private MenuButton retryButton;
+	private HeaderLabel highestScoreLabel;
+	private HeaderLabel scoreLabel;
+	
+	public DeadSubscene() {
+		super(500,500);
+		setLayoutY(25);
+		setGc();
+		createBackButton();
+		createRetryButton();
+		this.getPane().getChildren().addAll(backButton,retryButton);
+		createHighestScoreLabel();
+		createCurrentScoreLabel();
+	}
+	
+	private void setGc() {
+		
+		
+	}
+	private void createBackButton() {
+		backButton = new MenuButton("BACK");
+		backButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				new Menu();
+				Main.MAIN_WINDOW.setScene(Menu.menuScene);
+			}
+		});
+		backButton.setLayoutX(50);
+		backButton.setLayoutY(400);
+	}
+	
+	private void createRetryButton() {
+		retryButton = new MenuButton("X");
+		retryButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				new Game();
+				Main.MAIN_WINDOW.setScene(Game.gameScene);
+			}
+		});
+		retryButton.setLayoutX(250);
+		retryButton.setLayoutY(400);
+	}
+	
+	private void createHighestScoreLabel() {
+		highestScoreLabel = new HeaderLabel("BEST");
+		highestScoreLabel.setLayoutX(102);
+		highestScoreLabel.setLayoutY(60);
+		InfoLabel highestScore = new InfoLabel(String.valueOf(PointsPane.highestPoints));
+		highestScore.setLayoutY(100);
+		this.getPane().getChildren().addAll(highestScoreLabel, highestScore);
+	}
+	
+	private void createCurrentScoreLabel() {
+		scoreLabel = new HeaderLabel("SCORE");
+		scoreLabel.setLayoutX(102);
+		scoreLabel.setLayoutY(210);
+		InfoLabel score = new InfoLabel(String.valueOf(PointsPane.points));
+		score.setLayoutY(250);
+		this.getPane().getChildren().addAll(scoreLabel, score);
+	}
 }

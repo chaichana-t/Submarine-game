@@ -1,9 +1,11 @@
 package entity.base;
 
-import entity.submarine.MyMissile;
+import entity.submarine.Missile;
 
 public interface Shootable {
 
-	public void shoot(MyMissile m);
+	
+
+	void shoot(Missile m);
 
 }

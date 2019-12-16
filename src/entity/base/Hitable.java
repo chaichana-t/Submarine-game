@@ -2,6 +2,6 @@ package entity.base;
 
 public interface Hitable {
 
-	public void checkIfCollide(Hitable object) throws Exception;
+	public void checkIfCollide(Hitable object);
 
 }

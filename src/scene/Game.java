@@ -1,62 +1,58 @@
 package scene;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import entity.submarine.EnemySubmarine;
-import entity.submarine.MyMissile;
-import entity.submarine.MySubmarine;
+
+import entity.base.Enemy;
+import entity.submarine.Missile;
+import entity.submarine.Submarine;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import resloader.Resloader;
 import ui.BackgroundPane;
+import ui.DeadSubscene;
 import ui.PointsPane;
 
 public class Game {
 
-	private static AnchorPane gamePane;
+	public static AnchorPane gamePane;
 	public static Scene gameScene;
 
-	private boolean isAlive;
+	public static boolean isAlive;
 
 	private BackgroundPane background;
-	public MySubmarine submarine;
+	public static Submarine submarine;
 	public static PointsPane pointsLabel;
-
-	public static List<EnemySubmarine> enemySubmarines;
+	public static Enemy enemies;
 
 	private AnimationTimer animation;
 	private boolean clock;
+	
+	private DeadSubscene deadSubScene = new DeadSubscene();
 
 	public Game() {
+		isAlive = true;
 		Resloader.LOAD();
 		setScene();
 		createKeyListener();
 		createGameLoop();
 
 	}
-	private void addEnimies() {
-		enemySubmarines = new ArrayList<EnemySubmarine>();
-		for(int i=0;i<Setting.ENIEMIESSUBMARINE_NUMBER;i++) {
-			enemySubmarines.add(new EnemySubmarine());
-		}
-	}
+	
 
 	private void setScene() {
-		addEnimies();
 		gamePane = new AnchorPane();
 		background = new BackgroundPane();
-		submarine = new MySubmarine();
+		submarine = new Submarine();
 		pointsLabel = new PointsPane();
-		gamePane.getChildren().addAll(background.getRects()[0], background.getRects()[1], submarine.getSubmarine(),pointsLabel.getPointsLabel());
-		for(EnemySubmarine enemy:enemySubmarines) {
-			gamePane.getChildren().add(enemy.getSubmarine());
+		
+		gamePane.getChildren().addAll(background.getRects()[0], background.getRects()[1], submarine.getSubmarine(),pointsLabel.getPointsLabel(),deadSubScene);
+		enemies = new Enemy();
+		for(int i = 0;i<Setting.ENIEMIESSUBMARINE_NUMBER;i++) {
+			gamePane.getChildren().addAll(enemies.getEnemies()[i]);
 		}
 		gameScene = new Scene(gamePane, 1000, 550);
 		
@@ -112,11 +108,7 @@ public class Game {
 		});
 	}
 	
-	private void moveEnemy() {
-		for(int i = 0;i<Setting.ENIEMIESSUBMARINE_NUMBER;i++) {
-			enemySubmarines[i].move();
-		}
-	}
+	
 
 	public void createGameLoop() {
 		Thread thread = new Thread(new Runnable() {
@@ -143,20 +135,39 @@ public class Game {
 
 			@Override
 			public void handle(long arg0) {
-				submarine.move();
-				background.move();
-				if (submarine.isShooting() && clock) {
-					MyMissile m = new MyMissile(submarine.getSubmarine().getLayoutX() + 120,
-							submarine.getSubmarine().getLayoutY() + 45);
-					submarine.shoot(m);
-					gamePane.getChildren().add(m.missile);
-				}
-				//moveEnemy();
-				
+				if(isAlive) {
+					submarine.move();
+					background.move();
+					enemies.checkIfCollide(submarine);
+					if (submarine.isShooting() && clock) {
+						Missile m = new Missile(submarine.getSubmarine().getLayoutX() + 120,
+								submarine.getSubmarine().getLayoutY() + 45);
+						submarine.shoot(m);
+						enemies.checkIfCollide(m);
+						gamePane.getChildren().add(m.getMissile());
+					}
+					enemies.move();
+				}else
+					Dead();
 			}
+
+			
 		};
 		animation.start();
 	}
-
+	
+	private void Dead() {
+		// TODO Auto-generated method stub
+		gamePane.getChildren().removeAll(submarine.getSubmarine(),pointsLabel.getPointsLabel());
+		for(int i = 0;i<Setting.ENIEMIESSUBMARINE_NUMBER;i++) {
+			gamePane.getChildren().remove(enemies.getEnemies()[i]);
+		}
+		animation.stop();
+		PointsPane.updateHighScore();
+		deadSubScene.moveSubScene();
+		
+	}
+	
+	
 
 }
