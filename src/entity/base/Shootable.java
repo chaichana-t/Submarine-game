@@ -6,6 +6,6 @@ public interface Shootable {
 
 	
 
-	void shoot(Missile m);
+	void shoot();
 
 }

@@ -2,6 +2,8 @@ package scene;
 
 
 
+import java.util.List;
+
 import entity.base.Enemy;
 import entity.submarine.Missile;
 import entity.submarine.Submarine;
@@ -27,14 +29,15 @@ public class Game {
 	public static Submarine submarine;
 	public static PointsPane pointsLabel;
 	public static Enemy enemies;
+	
+	private boolean trigger;
 
 	private AnimationTimer animation;
 	private boolean clock;
 	
-	private DeadSubscene deadSubScene = new DeadSubscene();
-
 	public Game() {
 		isAlive = true;
+		trigger = false;
 		Resloader.LOAD();
 		setScene();
 		createKeyListener();
@@ -49,9 +52,9 @@ public class Game {
 		submarine = new Submarine();
 		pointsLabel = new PointsPane();
 		
-		gamePane.getChildren().addAll(background.getRects()[0], background.getRects()[1], submarine.getSubmarine(),pointsLabel.getPointsLabel(),deadSubScene);
+		gamePane.getChildren().addAll(background.getRects()[0], background.getRects()[1], submarine.getSubmarine(),pointsLabel.getPointsLabel());
 		enemies = new Enemy();
-		for(int i = 0;i<Setting.ENIEMIESSUBMARINE_NUMBER;i++) {
+		for(int i = 0;i<Setting.ENEMY_NUMBER;i++) {
 			gamePane.getChildren().addAll(enemies.getEnemies()[i]);
 		}
 		gameScene = new Scene(gamePane, 1000, 550);
@@ -78,9 +81,9 @@ public class Game {
 
 					submarine.setPressedDown(true);
 				}
-				if (event.getCode() == KeyCode.SPACE) {
-
-					submarine.setShooting(true);
+				if (event.getCode() == KeyCode.SPACE && trigger == false) {
+					trigger = true;
+					submarine.shoot();
 				}
 			}
 		});
@@ -102,7 +105,7 @@ public class Game {
 					submarine.setPressedDown(false);
 				}
 				if (event.getCode() == KeyCode.SPACE) {
-					submarine.setShooting(false);
+					trigger = false;
 				}
 			}
 		});
@@ -139,13 +142,6 @@ public class Game {
 					submarine.move();
 					background.move();
 					enemies.checkIfCollide(submarine);
-					if (submarine.isShooting() && clock) {
-						Missile m = new Missile(submarine.getSubmarine().getLayoutX() + 120,
-								submarine.getSubmarine().getLayoutY() + 45);
-						submarine.shoot(m);
-						enemies.checkIfCollide(m);
-						gamePane.getChildren().add(m.getMissile());
-					}
 					enemies.move();
 				}else
 					Dead();
@@ -159,15 +155,14 @@ public class Game {
 	private void Dead() {
 		// TODO Auto-generated method stub
 		gamePane.getChildren().removeAll(submarine.getSubmarine(),pointsLabel.getPointsLabel());
-		for(int i = 0;i<Setting.ENIEMIESSUBMARINE_NUMBER;i++) {
+		for(int i = 0;i<Setting.ENEMY_NUMBER;i++) {
 			gamePane.getChildren().remove(enemies.getEnemies()[i]);
 		}
 		animation.stop();
 		PointsPane.updateHighScore();
+		DeadSubscene deadSubScene = new DeadSubscene();
+		gamePane.getChildren().add(deadSubScene);
 		deadSubScene.moveSubScene();
 		
 	}
-	
-	
-
 }

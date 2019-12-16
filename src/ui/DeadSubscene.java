@@ -46,7 +46,7 @@ public class DeadSubscene extends MenuSubscene{
 	}
 	
 	private void createRetryButton() {
-		retryButton = new MenuButton("X");
+		retryButton = new MenuButton("RETRY");
 		retryButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -60,18 +60,24 @@ public class DeadSubscene extends MenuSubscene{
 	
 	private void createHighestScoreLabel() {
 		highestScoreLabel = new HeaderLabel("BEST");
-		highestScoreLabel.setLayoutX(102);
+		highestScoreLabel.setLayoutX(150);
 		highestScoreLabel.setLayoutY(60);
 		InfoLabel highestScore = new InfoLabel(String.valueOf(PointsPane.highestPoints));
+		highestScore.setPrefHeight(49);
+		highestScore.setPrefWidth(190);
+		highestScore.setLayoutX(150);
 		highestScore.setLayoutY(100);
 		this.getPane().getChildren().addAll(highestScoreLabel, highestScore);
 	}
 	
 	private void createCurrentScoreLabel() {
 		scoreLabel = new HeaderLabel("SCORE");
-		scoreLabel.setLayoutX(102);
+		scoreLabel.setLayoutX(150);
 		scoreLabel.setLayoutY(210);
 		InfoLabel score = new InfoLabel(String.valueOf(PointsPane.points));
+		score.setPrefHeight(49);
+		score.setPrefWidth(190);
+		score.setLayoutX(150);
 		score.setLayoutY(250);
 		this.getPane().getChildren().addAll(scoreLabel, score);
 	}

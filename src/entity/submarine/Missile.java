@@ -20,13 +20,14 @@ public class Missile extends Entity implements Hitable {
 	protected boolean isHit;
 
 	private Rectangle missile;
-	private AnimationTimer TIMER;
+	public AnimationTimer TIMER;
 
 	public Missile(double x, double y) {
 		super();
 		this.startX = x;
 		this.startY = y;
 		setPosition();
+		move();
 
 	}
 
@@ -49,21 +50,20 @@ public class Missile extends Entity implements Hitable {
 		Game.enemies.checkIfCollide(this);
 	}
 
-	public void moveRight() {
-		missile.setLayoutX(missile.getLayoutX() + VELOCITY);
-	}
-
-	public void moveLeft() {
-		missile.setLayoutX(missile.getLayoutX() - VELOCITY);
-	}
 	@Override
 	public void move() {
 		TIMER = new AnimationTimer() {
 			@Override
 			public void handle(long arg0) {
 				// TODO Auto-generated method stub
-				moveRight();
 				checkIfCollide(Game.enemies);
+				missile.setLayoutX(missile.getLayoutX() + VELOCITY);
+				if(missile.getLayoutX() > Setting.GAME_WIDTH) {
+					Game.gamePane.getChildren().remove(missile);
+					stop();
+				}
+				
+				
 			}
 		};
 		TIMER.start();

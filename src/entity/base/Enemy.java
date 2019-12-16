@@ -29,9 +29,9 @@ public class Enemy extends Entity implements Hitable{
 	@Override
 	public void setGc() {
 		// TODO Auto-generated method stub
-		enemies = new Rectangle[Setting.ENIEMIESSUBMARINE_NUMBER];
+		enemies = new Rectangle[Setting.ENEMY_NUMBER];
 		randomGenerator = new Random();
-		for(int i = 0;i<Setting.ENIEMIESSUBMARINE_NUMBER;i++) {
+		for(int i = 0;i<Setting.ENEMY_NUMBER;i++) {
 			enemies[i] = new Rectangle(125,80);
 			enemies[i].setFill(new ImagePattern(Resloader.enemy));
 		}
@@ -40,7 +40,7 @@ public class Enemy extends Entity implements Hitable{
 	@Override
 	public void setPosition() {
 		// TODO Auto-generated method stub
-		for(int i = 0;i < Setting.ENIEMIESSUBMARINE_NUMBER;i++) {
+		for(int i = 0;i < Setting.ENEMY_NUMBER;i++) {
 			randomNumber = randomGenerator.nextInt(20) * 20;
 			enemies[i].setLayoutX(1100 + randomNumber);
 			enemies[i].setLayoutY(randomNumber+80);
@@ -52,7 +52,7 @@ public class Enemy extends Entity implements Hitable{
 	@Override
 	public void move() {
 		// TODO Auto-generated method stub
-		for(int i = 0; i < Setting.ENIEMIESSUBMARINE_NUMBER;i++) {
+		for(int i = 0; i < Setting.ENEMY_NUMBER;i++) {
 			enemies[i].setLayoutX(enemies[i].getLayoutX()-(i*velocity)/2-velocity);
 			try {
 				checkIfOutOfBorder(enemies[i]);
@@ -84,15 +84,17 @@ public class Enemy extends Entity implements Hitable{
 	public void checkIfCollide(Hitable object) {
 		// TODO Auto-generated method stub
 		if(object instanceof Submarine) {
-			for(int i = 0;i < Setting.ENIEMIESSUBMARINE_NUMBER;i++) {
+			for(int i = 0;i < Setting.ENEMY_NUMBER;i++) {
 				if(enemies[i].getBoundsInParent().intersects(((Submarine) object).getSubmarine().getBoundsInParent())) {
 					Game.isAlive = false;
 				}
 			}
 		}else if(object instanceof Missile) {
-			for(int i = 0;i < Setting.ENIEMIESSUBMARINE_NUMBER;i++) {
+			for(int i = 0;i < Setting.ENEMY_NUMBER;i++) {
 				if(enemies[i].getBoundsInParent().intersects(((Missile) object).getMissile().getBoundsInParent())) {
 					relocate(i);
+					Game.gamePane.getChildren().remove(((Missile) object).getMissile());
+					((Missile)object).TIMER.stop();
 					PointsPane.points++;
 					PointsPane.updateScore();
 				}

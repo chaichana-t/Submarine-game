@@ -10,6 +10,7 @@ import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import resloader.Resloader;
+import scene.Game;
 
 public class Submarine extends Entity implements Shootable,Hitable {
 
@@ -48,10 +49,9 @@ public class Submarine extends Entity implements Shootable,Hitable {
 	}
 	
 	@Override
-	public void shoot(Missile m) {
-		if (m.getMissile().getLayoutX() < 1000) {
-			m.move();
-		}
+	public void shoot() {
+		Missile m = new Missile(submarineGroup.getLayoutX()+70,submarineGroup.getLayoutY()+40);
+		Game.gamePane.getChildren().add(m.getMissile());
 	}
 	
 	@Override
