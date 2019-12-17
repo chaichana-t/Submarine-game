@@ -50,4 +50,10 @@ public class MenuSubscene extends SubScene{
 	public AnchorPane getPane() {
 		return (AnchorPane) this.getRoot();
 	}
+
+	public boolean isHidden() {
+		return isHidden;
+	}
+	
+	
 }

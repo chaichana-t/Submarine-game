@@ -24,7 +24,7 @@ public class PointsPane {
 	}
 
 	private void setFont() {
-		pointsLabel.setFont(Font.loadFont(ClassLoader.getSystemResource("kenvector_future.ttf").toString(), 18));
+		pointsLabel.setFont(Font.loadFont(ClassLoader.getSystemResource("kenvector_future.ttf").toString(), 30));
 	}
 
 	public static void updateScore() {

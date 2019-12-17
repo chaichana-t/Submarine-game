@@ -4,6 +4,7 @@ import entity.base.shark;
 import entity.base.Entity;
 import entity.base.Hitable;
 import javafx.animation.AnimationTimer;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
@@ -47,9 +48,19 @@ public class Missile extends Entity implements Hitable {
 	@Override
 	public void checkIfCollide(Hitable object) {
 		// TODO Auto-generated method stub
+		if(object instanceof shark) {
+			for(int i = 0; i< Setting.ENEMY_NUMBER;i++) {
+				if(((shark) object).getEnemies()[i].getBoundsInParent().intersects(missile.getBoundsInParent())) {
+					//AudioClip sound1 = new AudioClip(ClassLoader.getSystemResource("Torpedo+Explosion.wav").toString()); 
+					//sound1.play();
+					Game.gamePane.getChildren().remove(missile);
+				}
+			}
+		}
 		Game.enemies.checkIfCollide(this);
 	}
 
+	
 	@Override
 	public void move() {
 		TIMER = new AnimationTimer() {

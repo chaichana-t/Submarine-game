@@ -6,6 +6,7 @@ import entity.submarine.Missile;
 import entity.submarine.Submarine;
 import exception.OutOfBorderException;
 import javafx.scene.Node;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import resloader.Resloader;
@@ -92,6 +93,8 @@ public class shark extends Entity implements Hitable{
 		if(object instanceof Submarine) {
 			for(int i = 0;i < Setting.ENEMY_NUMBER;i++) {
 				if(enemies[i].getBoundsInParent().intersects(((Submarine) object).getSubmarine().getBoundsInParent())) {
+					Game.submarine.getSubmarinMoving_Aniamtion().stop();
+					Game.submarine.getSubmarine().getChildren().setAll(Resloader.bombingSubmarine);
 					Game.isAlive = false;
 				}
 			}
@@ -99,7 +102,8 @@ public class shark extends Entity implements Hitable{
 			for(int i = 0;i < Setting.ENEMY_NUMBER;i++) {
 				if(enemies[i].getBoundsInParent().intersects(((Missile) object).getMissile().getBoundsInParent())) {
 					relocate(i);
-					Game.gamePane.getChildren().remove(((Missile) object).getMissile());
+					//AudioClip sound = new AudioClip(ClassLoader.getSystemResource("Torpedo+Explosion.mp3").toString());
+					//sound.play();
 					((Missile)object).TIMER.stop();
 					PointsPane.points++;
 					PointsPane.updateScore();

@@ -110,11 +110,13 @@ public class Menu {
 			@Override
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				Resloader.menuBackgroundMusic.stop();
-				new Game();
-				Main.MAIN_WINDOW.setScene(Game.gameScene);
-				animation.stop();
-				System.out.println("GameStart");
+				if(howTo.isHidden()) {
+					Resloader.menuBackgroundMusic.stop();
+					new Game();
+					Main.MAIN_WINDOW.setScene(Game.gameScene);
+					animation.stop();
+					System.out.println("GameStart");
+				}
 			}
 		});
 		startButton.setLayoutX(MENU_BUTTONS_START_X);

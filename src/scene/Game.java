@@ -155,7 +155,8 @@ public class Game {
 	
 	private void Dead() {
 		// TODO Auto-generated method stub
-		gamePane.getChildren().removeAll(submarine.getSubmarine(),pointsLabel.getPointsLabel());
+		Resloader.bombSound.play();
+		gamePane.getChildren().removeAll(/*submarine.getSubmarine(),*/pointsLabel.getPointsLabel());
 		for(int i = 0;i<Setting.ENEMY_NUMBER;i++) {
 			gamePane.getChildren().remove(enemies.getEnemies()[i]);
 		}

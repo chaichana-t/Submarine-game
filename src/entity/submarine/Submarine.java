@@ -17,10 +17,11 @@ public class Submarine extends Entity implements Shootable,Hitable {
 	protected boolean isAlive;
 	protected int velocity;
 
-	protected ImageView movingSubmarine1;
-	protected ImageView movingSubmarine2;
-	protected ImageView movingSubmarine3;
-	protected ImageView movingSubmarine4;
+	private ImageView movingSubmarine1;
+	private ImageView movingSubmarine2;
+	private ImageView movingSubmarine3;
+	private ImageView movingSubmarine4;
+	private ImageView bombingSubmarine;
 
 	private boolean isPressedUp;
 	private boolean isPressedDown;
@@ -56,6 +57,7 @@ public class Submarine extends Entity implements Shootable,Hitable {
 	
 	@Override
 	public void setGc() {
+		bombingSubmarine = Resloader.bombingSubmarine;
 		movingSubmarine1 = Resloader.movingSubmarine1;
 		movingSubmarine2 = Resloader.movingSubmarine2;
 		movingSubmarine3 = Resloader.movingSubmarine3;

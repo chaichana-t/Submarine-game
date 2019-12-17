@@ -6,6 +6,8 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 
 public class Resloader {
@@ -14,13 +16,14 @@ public class Resloader {
 	public static ImageView movingSubmarine2;
 	public static ImageView movingSubmarine3;
 	public static ImageView movingSubmarine4;
-	public static ImageView normalSubmarine;
+	public static ImageView bombingSubmarine;
 	
 	public static Image redShark;
 	public static Image pinkShark;
 	public static Image blueShark;
 	public static Image yellowShark;
 	public static Image greenShark;
+	public static Image bombShark;
 
 	public static Image missile;
 
@@ -33,13 +36,16 @@ public class Resloader {
 	
 	public static AudioClip missileExplosion;
 	public static AudioClip menuBackgroundMusic;
-	public static AudioClip bombSound;
+	public static MediaPlayer bombSound;
 
 	public static void LOAD() {
 		movingSubmarine1 = new ImageView(ClassLoader.getSystemResource("idle1.png").toString());
 		movingSubmarine2 = new ImageView(ClassLoader.getSystemResource("idle2.png").toString());
 		movingSubmarine3 = new ImageView(ClassLoader.getSystemResource("idle3.png").toString());
 		movingSubmarine4 = new ImageView(ClassLoader.getSystemResource("idle4.png").toString());
+		bombingSubmarine = new ImageView(ClassLoader.getSystemResource("boom_sub.png").toString());
+		bombingSubmarine.setFitHeight(80);
+		bombingSubmarine.setFitWidth(125);
 		
 		exitButtonImg = new ImageView(ClassLoader.getSystemResource("blue_boxCross.png").toString());
 		
@@ -50,12 +56,14 @@ public class Resloader {
 		blueShark = new Image(ClassLoader.getSystemResource("blue_shark.png").toString());
 		yellowShark = new Image(ClassLoader.getSystemResource("yellow_shark.png").toString());
 		greenShark = new Image(ClassLoader.getSystemResource("green_shark.png").toString());
+		bombShark = new Image(ClassLoader.getSystemResource("boom_shark.png").toString());
 		
 		logo = new ImageView(ClassLoader.getSystemResource("logo.png").toString());
 		howtoPlay = new ImageView(ClassLoader.getSystemResource("howtoplay.png").toString());
 		
 		background = new Image(ClassLoader.getSystemResource("bg.jpg").toString());
 		menuBackgroundMusic = new AudioClip(ClassLoader.getSystemResource("backgroundMusic1.mp3").toString());
+		bombSound = new MediaPlayer(new Media(ClassLoader.getSystemResource("bombEx.wav").toString()));
 		missileExplosion = new AudioClip(ClassLoader.getSystemResource("Torpedo+Explosion.mp3").toString());
 	}
 
