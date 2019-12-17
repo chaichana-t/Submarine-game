@@ -6,6 +6,8 @@ import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import resloader.Resloader;
 import ui.BackgroundPane;
@@ -26,18 +28,20 @@ public class Menu {
 	private BackgroundPane background;
 	
 	private AnimationTimer animation;
+	private ImageView logo;
 
 	public final static int MENU_BUTTONS_START_X = 400;
-	public final static int MENU_BUTTONS_START_Y = 400;
+	public final static int MENU_BUTTONS_START_Y = 450;
 	
-	private HowToPlaySubscene howTo = new HowToPlaySubscene(400, 400);
+	private HowToPlaySubscene howTo;
 	
 	public Menu() {
-		//Resloader.menuBackgroundMusic.play();
+		Resloader.menuBackgroundMusic.play();
 		setScene();
 		createLoop();
 		createButton();
-		menuPane.getChildren().add(howTo);
+		createLogo();
+		createHowtoSubscene();
 		
 	
 	}
@@ -45,7 +49,6 @@ public class Menu {
 	private void setScene() {
 		menuPane = new AnchorPane();
 		background = new BackgroundPane();
-	
 		menuPane.getChildren().addAll(background.getRects()[0], background.getRects()[1]);
 		menuScene = new Scene(menuPane, Setting.GAME_WIDTH, Setting.GAME_HEIGHT);
 	}
@@ -58,6 +61,22 @@ public class Menu {
 			}
 		};
 		animation.start();
+	}
+	
+	private void createHowtoSubscene() {
+		howTo = new HowToPlaySubscene(400, 400);
+	
+		menuPane.getChildren().add(howTo);
+		
+	}
+	
+	private void createLogo() {
+		logo = Resloader.logo;
+		logo.setFitWidth(500);
+		logo.setFitHeight(300);
+		logo.setLayoutX(Setting.GAME_WIDTH/4);
+		logo.setLayoutY(Setting.GAME_HEIGHT/6);
+		menuPane.getChildren().add(logo);
 	}
 	
 	private void createButton() {
@@ -91,13 +110,12 @@ public class Menu {
 			@Override
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				//Resloader.menuBackgroundMusic.stop();
+				Resloader.menuBackgroundMusic.stop();
 				new Game();
 				Main.MAIN_WINDOW.setScene(Game.gameScene);
 				animation.stop();
 				System.out.println("GameStart");
 			}
-			
 		});
 		startButton.setLayoutX(MENU_BUTTONS_START_X);
 		startButton.setLayoutY(MENU_BUTTONS_START_Y);

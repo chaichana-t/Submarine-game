@@ -4,6 +4,7 @@ import application.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.text.Font;
+import resloader.Resloader;
 import scene.Game;
 import scene.Menu;
 import ui.base.HeaderLabel;
@@ -38,6 +39,7 @@ public class DeadSubscene extends MenuSubscene{
 		backButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
+				Resloader.menuBackgroundMusic.play();
 				new Menu();
 				Main.MAIN_WINDOW.setScene(Menu.menuScene);
 			}

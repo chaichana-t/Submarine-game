@@ -13,7 +13,7 @@ import scene.Game;
 import scene.Setting;
 import ui.PointsPane;
 
-public class Enemy extends Entity implements Hitable{
+public class shark extends Entity implements Hitable{
 	
 	private Random randomGenerator;
 	private static int randomNumber;
@@ -21,7 +21,7 @@ public class Enemy extends Entity implements Hitable{
 	
 	private int velocity;
 	
-	public Enemy() {
+	public shark() {
 		super();
 		this.velocity = 5;
 		
@@ -31,10 +31,16 @@ public class Enemy extends Entity implements Hitable{
 		// TODO Auto-generated method stub
 		enemies = new Rectangle[Setting.ENEMY_NUMBER];
 		randomGenerator = new Random();
-		for(int i = 0;i<Setting.ENEMY_NUMBER;i++) {
-			enemies[i] = new Rectangle(125,80);
-			enemies[i].setFill(new ImagePattern(Resloader.enemy));
-		}
+		enemies[0] = new Rectangle(125,80);
+		enemies[0].setFill(new ImagePattern(Resloader.blueShark));
+		enemies[1] = new Rectangle(125,80);
+		enemies[1].setFill(new ImagePattern(Resloader.greenShark));
+		enemies[2] = new Rectangle(125,80);
+		enemies[2].setFill(new ImagePattern(Resloader.pinkShark));
+		enemies[3] = new Rectangle(125,80);
+		enemies[3].setFill(new ImagePattern(Resloader.redShark));
+		enemies[4] = new Rectangle(125,80);
+		enemies[4].setFill(new ImagePattern(Resloader.yellowShark));
 	}
 
 	@Override  

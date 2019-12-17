@@ -1,6 +1,6 @@
 package entity.submarine;
 
-import entity.base.Enemy;
+import entity.base.shark;
 import entity.base.Entity;
 import entity.base.Hitable;
 import javafx.animation.AnimationTimer;

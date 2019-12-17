@@ -4,7 +4,7 @@ package scene;
 
 import java.util.List;
 
-import entity.base.Enemy;
+import entity.base.shark;
 import entity.submarine.Missile;
 import entity.submarine.Submarine;
 import javafx.animation.AnimationTimer;
@@ -29,7 +29,7 @@ public class Game {
 	private BackgroundPane background;
 	public static Submarine submarine;
 	public static PointsPane pointsLabel;
-	public static Enemy enemies;
+	public static shark enemies;
 	
 	private boolean trigger;
 
@@ -54,7 +54,7 @@ public class Game {
 		pointsLabel = new PointsPane();
 		
 		gamePane.getChildren().addAll(background.getRects()[0], background.getRects()[1], submarine.getSubmarine(),pointsLabel.getPointsLabel());
-		enemies = new Enemy();
+		enemies = new shark();
 		for(int i = 0;i<Setting.ENEMY_NUMBER;i++) {
 			gamePane.getChildren().addAll(enemies.getEnemies()[i]);
 		}

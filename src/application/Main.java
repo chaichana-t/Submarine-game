@@ -20,6 +20,7 @@ public class Main extends Application {
 		MAIN_WINDOW = new Stage();
 		new Menu();
 		MAIN_WINDOW.setTitle("Submarine");
+		MAIN_WINDOW.setResizable(false);
 		MAIN_WINDOW.setScene(Menu.menuScene);
 		MAIN_WINDOW.show();
 	}

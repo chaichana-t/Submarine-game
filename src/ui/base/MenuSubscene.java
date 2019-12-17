@@ -22,14 +22,14 @@ public class MenuSubscene extends SubScene{
 		prefWidth(w);
 		prefHeight(h);
 		BackgroundImage imageBackground = new BackgroundImage(
-				new Image(ClassLoader.getSystemResource("blue_panel.png").toString(), this.getHeight(), this.getWidth(),
+				new Image(ClassLoader.getSystemResource("blue_panel.png").toString(), h, w,
 						false, true),
-				BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, null);
+				BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, null);
 		AnchorPane root = (AnchorPane) this.getRoot();
 		root.setBackground(new Background(imageBackground));
 		isHidden = true;
 		setLayoutX(Setting.GAME_WIDTH + w);
-		setLayoutY(100);
+		setLayoutY(50);
 	}
 
 	public void moveSubScene() {
@@ -37,7 +37,7 @@ public class MenuSubscene extends SubScene{
 		transition.setDuration(Duration.seconds(0.3));
 		transition.setNode(this);
 		if (isHidden) {
-			System.out.println(-Setting.GAME_WIDTH - this.getWidth() + ((Setting.GAME_WIDTH - this.getWidth()) / 2));
+			//System.out.println(-Setting.GAME_WIDTH - this.getWidth() + ((Setting.GAME_WIDTH - this.getWidth()) / 2));
 			transition.setToX(-Setting.GAME_WIDTH - this.getWidth() + ((Setting.GAME_WIDTH - this.getWidth()) / 2));
 			isHidden = false;
 		} else {
