@@ -56,7 +56,7 @@ public class Resloader {
 		
 		background = new Image(ClassLoader.getSystemResource("bg.jpg").toString());
 		menuBackgroundMusic = new AudioClip(ClassLoader.getSystemResource("backgroundMusic1.mp3").toString());
-		missileExplosion = new AudioClip();
+		missileExplosion = new AudioClip(ClassLoader.getSystemResource("Torpedo+Explosion.mp3").toString());
 	}
 
 }
