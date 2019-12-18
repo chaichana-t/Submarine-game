@@ -106,8 +106,7 @@ public class Shark extends Entity implements Hitable{
 		if(object instanceof Submarine) {
 			for(int i = 0;i < Setting.ENEMY_NUMBER;i++) {
 				if(enemies[i].getBoundsInParent().intersects(((Submarine) object).getSubmarine().getBoundsInParent())) {
-					Game.submarine.getSubmarinMoving_Aniamtion().stop();
-					Game.submarine.getSubmarine().getChildren().setAll(Resloader.bombingSubmarine);
+					Game.submarine.getSubmarinMovingAniamtion().stop();
 					Game.isAlive = false;
 				}
 			}

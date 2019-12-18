@@ -75,13 +75,14 @@ public class SlowClock extends Entity implements Hitable{
 				isCalled = false;
 				isActivated = true;
 				Game.isClockActivated = true;
+				Resloader.powerSound.play();
 			}
 		}
 		
 	}
 	
 	public void checkIfOutOfBorder() throws OutOfBorderException{
-		if(clock.getLayoutX() < -50|| clock.getLayoutY() < 100) {
+		if(clock.getLayoutX() < -50|| clock.getLayoutY() < 100 || clock.getLayoutY()+CLOCK_HEIGHT > 550) {
 			 throw new OutOfBorderException("Out Of bound");
 		}
 	}

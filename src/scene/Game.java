@@ -164,12 +164,13 @@ public class Game {
 	private void Dead() {
 		// TODO Auto-generated method stub
 		Resloader.bombSound.play();
-		submarine.getSubmarinMoving_Aniamtion().stop();
+		Resloader.powerSound.stop();
 		animation.stop();
-		gamePane.getChildren().removeAll(/*submarine.getSubmarine(),*/pointsLabel.getPointsLabel());
+		gamePane.getChildren().removeAll(submarine.getSubmarine(),pointsLabel.getPointsLabel());
 		for(int i = 0;i<Setting.ENEMY_NUMBER;i++) {
 			gamePane.getChildren().remove(enemies.getEnemies()[i]);
 		}
+		gamePane.getChildren().add(submarine.getBomb());
 		PointsPane.updateHighScore();
 		DeadSubscene deadSubScene = new DeadSubscene();
 		gamePane.getChildren().add(deadSubScene);

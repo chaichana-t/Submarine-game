@@ -2,7 +2,6 @@ package resloader;
 
 
 
-import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.AudioClip;
@@ -41,6 +40,7 @@ public class Resloader {
 	public static AudioClip missileExplosion;
 	public static AudioClip menuBackgroundMusic;
 	public static MediaPlayer bombSound;
+	public static AudioClip powerSound;
 
 	public static void LOAD() {
 		movingSubmarine1 = new ImageView(ClassLoader.getSystemResource("idle1.png").toString());
@@ -71,7 +71,9 @@ public class Resloader {
 		background = new Image(ClassLoader.getSystemResource("bg.jpg").toString());
 		menuBackgroundMusic = new AudioClip(ClassLoader.getSystemResource("backgroundMusic1.mp3").toString());
 		bombSound = new MediaPlayer(new Media(ClassLoader.getSystemResource("bombEx.wav").toString()));
-		missileExplosion = new AudioClip(ClassLoader.getSystemResource("bombEx.wav").toString());
+		missileExplosion = new AudioClip(ClassLoader.getSystemResource("cannon-fire-single-shot-blast.mp3").toString());
+		powerSound = new AudioClip(ClassLoader.getSystemResource("The Slow Mo Guys slow motion sound effect.mp3").toString());
+		
 	}
 
 }

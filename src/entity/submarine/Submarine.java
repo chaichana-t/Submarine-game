@@ -21,7 +21,7 @@ public class Submarine extends Entity implements Shootable,Hitable {
 	private ImageView movingSubmarine2;
 	private ImageView movingSubmarine3;
 	private ImageView movingSubmarine4;
-	private ImageView bombingSubmarine;
+	private ImageView bombingSubmarineBig;
 
 	private boolean isPressedUp;
 	private boolean isPressedDown;
@@ -30,14 +30,15 @@ public class Submarine extends Entity implements Shootable,Hitable {
 	private boolean isShooting;
 
 	private Group submarineGroup;
+	private Group bombGroup;
 
 	private boolean isCanUp;
 	private boolean isCanDown;
 	private boolean isCanRight;
 	private boolean isCanLeft;
 	
-
-	protected Timeline submarineMovingAnimation;
+	private Timeline submarineBombingAnimation;
+	private Timeline submarineMovingAnimation;
 
 	public Submarine() {
 		super();
@@ -45,7 +46,7 @@ public class Submarine extends Entity implements Shootable,Hitable {
 		this.velocity = 5;
 		isCanUp = isCanDown = isCanRight = isCanLeft = true;
 		isPressedUp = isPressedDown = isPressedRight = isPressedLeft = isShooting = false;
-		setSubmarine_Animation();
+		setSubmarineMovingAnimation();
 
 	}
 	
@@ -57,12 +58,15 @@ public class Submarine extends Entity implements Shootable,Hitable {
 	
 	@Override
 	public void setGc() {
-		bombingSubmarine = Resloader.bombingSubmarine;
 		movingSubmarine1 = Resloader.movingSubmarine1;
 		movingSubmarine2 = Resloader.movingSubmarine2;
 		movingSubmarine3 = Resloader.movingSubmarine3;
 		movingSubmarine4 = Resloader.movingSubmarine4;
 		submarineGroup = new Group(movingSubmarine1);
+		
+
+		bombingSubmarineBig = Resloader.bombingSubmarine;
+		bombGroup = new Group(bombingSubmarineBig);
 	}
 	
 	@Override
@@ -74,6 +78,10 @@ public class Submarine extends Entity implements Shootable,Hitable {
 	}
 	
 	public void setSize() {
+		bombingSubmarineBig.setFitHeight(160);
+		bombingSubmarineBig.setFitWidth(250);
+		
+		
 		movingSubmarine1.setFitHeight(80);
 		movingSubmarine1.setFitWidth(125);
 		movingSubmarine2.setFitHeight(80);
@@ -85,11 +93,16 @@ public class Submarine extends Entity implements Shootable,Hitable {
 	}
 
 
-	public Timeline getSubmarinMoving_Aniamtion() {
+	public Timeline getSubmarinMovingAniamtion() {
 		return submarineMovingAnimation;
 	}
 
 	
+	
+	public Timeline getSubmarineBombingAnimation() {
+		return submarineBombingAnimation;
+	}
+
 	public void setPressedUp(boolean isPressedUp) {
 		this.isPressedUp = isPressedUp;
 	}
@@ -151,7 +164,10 @@ public class Submarine extends Entity implements Shootable,Hitable {
 			isCanUp = true;
 		}
 	}
-	public void setSubmarine_Animation() {
+	
+	
+	
+	public void setSubmarineMovingAnimation() {
 		submarineMovingAnimation = new Timeline();
 		submarineMovingAnimation.setCycleCount(Timeline.INDEFINITE);
 		submarineMovingAnimation.getKeyFrames().add(new KeyFrame(Duration.millis(200), (ActionEvent event) -> {
@@ -197,6 +213,16 @@ public class Submarine extends Entity implements Shootable,Hitable {
 		// TODO Auto-generated method stub
 		this.isShooting = isShooting;
 
+	}
+	
+	public void setBombPosition() {
+		bombGroup.setLayoutX(submarineGroup.getLayoutX());
+		bombGroup.setLayoutY(submarineGroup.getLayoutY());
+	}
+	
+	public Group getBomb() {
+		setBombPosition();
+		return bombGroup;
 	}
 
 	@Override

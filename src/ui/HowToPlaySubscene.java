@@ -41,7 +41,7 @@ public class HowToPlaySubscene extends MenuSubscene {
 		Resloader.exitButtonImg.setFitWidth(32);
 		backButton = new Button("",Resloader.exitButtonImg);
 		backButton.setAlignment(Pos.TOP_LEFT);
-		backButton.setStyle(" -fx-background-color: transparent; -fx-background-image: url('"+ ClassLoader.getSystemResource("blue_button11.png").toString() + "');");
+		backButton.setStyle(" -fx-background-color: transparent; -fx-background-image: url('"+ ClassLoader.getSystemResource("grey_button12.png").toString() + "');");
 		backButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -52,7 +52,7 @@ public class HowToPlaySubscene extends MenuSubscene {
 			@Override
 			public void handle(MouseEvent event) {
 				if (event.getButton().equals(MouseButton.PRIMARY)) {
-					backButton.setStyle(" -fx-background-color: transparent; -fx-background-image: url('"+ ClassLoader.getSystemResource("blue_button12.png").toString() + "');");
+					backButton.setStyle(" -fx-background-color: transparent; -fx-background-image: url('"+ ClassLoader.getSystemResource("grey_button13.png").toString() + "');");
 					backButton.setPrefHeight(45);
 					setLayoutY(getLayoutY() + 4);
 					
@@ -63,7 +63,7 @@ public class HowToPlaySubscene extends MenuSubscene {
 			@Override
 			public void handle(MouseEvent event) {
 				if (event.getButton().equals(MouseButton.PRIMARY)) {
-					backButton.setStyle(" -fx-background-color: transparent; -fx-background-image: url('"+ ClassLoader.getSystemResource("blue_button11.png").toString() + "');");
+					backButton.setStyle(" -fx-background-color: transparent; -fx-background-image: url('"+ ClassLoader.getSystemResource("grey_button12.png").toString() + "');");
 					backButton.setPrefHeight(49);;
 					setLayoutY(getLayoutY() - 4);
 				}
