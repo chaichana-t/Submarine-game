@@ -27,9 +27,9 @@ public class Main extends Application {
 		launch(args);
 	}
 
-	/*@Override
+	@Override
 	public void stop() throws Exception {
 		Platform.exit();
 		System.exit(0);
-	}*/
+	}
 }
