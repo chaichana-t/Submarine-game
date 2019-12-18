@@ -1,10 +1,7 @@
 package scene;
 
-
-
-import java.util.List;
-
-import entity.base.shark;
+import entity.base.Shark;
+import entity.base.SlowClock;
 import entity.submarine.Missile;
 import entity.submarine.Submarine;
 import javafx.animation.AnimationTimer;
@@ -18,6 +15,7 @@ import resloader.Resloader;
 import ui.BackgroundPane;
 import ui.DeadSubscene;
 import ui.PointsPane;
+import ui.TimerPane;
 
 public class Game {
 
@@ -25,24 +23,30 @@ public class Game {
 	public static Scene gameScene;
 
 	public static boolean isAlive;
+	public static boolean isClockActivated;
 
 	private BackgroundPane background;
 	public static Submarine submarine;
 	public static PointsPane pointsLabel;
-	public static shark enemies;
-	
+	public static TimerPane timerLabel;
+	public static Shark enemies;
+	public static SlowClock clock;
+	public static Thread clockTimer;
 	private boolean trigger;
 
 	private AnimationTimer animation;
-	private boolean clock;
 	
 	public Game() {
 		isAlive = true;
 		trigger = false;
+		isClockActivated = false;
 		Resloader.LOAD();
 		setScene();
+		createGameEntites();
+		createGameUI();
 		createKeyListener();
 		createGameLoop();
+		threadInitialize();
 
 	}
 	
@@ -50,16 +54,35 @@ public class Game {
 	private void setScene() {
 		gamePane = new AnchorPane();
 		background = new BackgroundPane();
-		submarine = new Submarine();
+		
+		
+		
+		gamePane.getChildren().addAll(background.getRects()[0], background.getRects()[1]);
+		gameScene = new Scene(gamePane, 1000, 550);
+		
+	}
+	
+	private void createGameUI() {
 		pointsLabel = new PointsPane();
 		
-		gamePane.getChildren().addAll(background.getRects()[0], background.getRects()[1], submarine.getSubmarine(),pointsLabel.getPointsLabel());
-		enemies = new shark();
+		timerLabel = new TimerPane();
+		
+		gamePane.getChildren().addAll(pointsLabel.getPointsLabel(),timerLabel.getTimerLabel());
+		
+	}
+	
+	private void createGameEntites() {
+		
+		submarine = new Submarine();
+		gamePane.getChildren().add(submarine.getSubmarine());
+		
+		clock = new SlowClock();
+		gamePane.getChildren().add(clock.getClock());
+		
+		enemies = new Shark();
 		for(int i = 0;i<Setting.ENEMY_NUMBER;i++) {
 			gamePane.getChildren().addAll(enemies.getEnemies()[i]);
 		}
-		gameScene = new Scene(gamePane, 1000, 550);
-		
 	}
 
 	private void createKeyListener() {
@@ -112,29 +135,12 @@ public class Game {
 		});
 	}
 	
+	public void threadInitialize() {
+		
+	}
 	
 
 	public void createGameLoop() {
-		Thread thread = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				try {
-					while (true) {
-						clock = true;
-						Thread.sleep(20);
-						clock = false;
-						Thread.sleep(100);
-					}
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-
-		});
-		thread.start();
-
 		animation = new AnimationTimer() {
 
 			@Override
@@ -144,6 +150,8 @@ public class Game {
 					background.move();
 					enemies.checkIfCollide(submarine);
 					enemies.move();
+					clock.move();
+					clock.isSkillActivated();
 				}else
 					Dead();
 			}
@@ -156,15 +164,18 @@ public class Game {
 	private void Dead() {
 		// TODO Auto-generated method stub
 		Resloader.bombSound.play();
+		submarine.getSubmarinMoving_Aniamtion().stop();
+		animation.stop();
 		gamePane.getChildren().removeAll(/*submarine.getSubmarine(),*/pointsLabel.getPointsLabel());
 		for(int i = 0;i<Setting.ENEMY_NUMBER;i++) {
 			gamePane.getChildren().remove(enemies.getEnemies()[i]);
 		}
-		animation.stop();
 		PointsPane.updateHighScore();
 		DeadSubscene deadSubScene = new DeadSubscene();
 		gamePane.getChildren().add(deadSubScene);
 		deadSubScene.moveSubScene();
+		clock.getTimer().interrupt();
+		timerLabel.getTimer().interrupt();
 		
 	}
 }

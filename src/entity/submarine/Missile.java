@@ -1,6 +1,6 @@
 package entity.submarine;
 
-import entity.base.shark;
+import entity.base.Shark;
 import entity.base.Entity;
 import entity.base.Hitable;
 import javafx.animation.AnimationTimer;
@@ -48,11 +48,11 @@ public class Missile extends Entity implements Hitable {
 	@Override
 	public void checkIfCollide(Hitable object) {
 		// TODO Auto-generated method stub
-		if(object instanceof shark) {
+		if(object instanceof Shark) {
 			for(int i = 0; i< Setting.ENEMY_NUMBER;i++) {
-				if(((shark) object).getEnemies()[i].getBoundsInParent().intersects(missile.getBoundsInParent())) {
-					//AudioClip sound1 = new AudioClip(ClassLoader.getSystemResource("Torpedo+Explosion.wav").toString()); 
-					//sound1.play();
+				if(((Shark) object).getEnemies()[i].getBoundsInParent().intersects(missile.getBoundsInParent())) {
+					AudioClip sound1 = Resloader.missileExplosion; 
+					sound1.play();
 					Game.gamePane.getChildren().remove(missile);
 				}
 			}

@@ -14,7 +14,7 @@ import scene.Game;
 import scene.Setting;
 import ui.PointsPane;
 
-public class shark extends Entity implements Hitable{
+public class Shark extends Entity implements Hitable{
 	
 	private Random randomGenerator;
 	private static int randomNumber;
@@ -22,7 +22,7 @@ public class shark extends Entity implements Hitable{
 	
 	private int velocity;
 	
-	public shark() {
+	public Shark() {
 		super();
 		this.velocity = 5;
 		
@@ -49,7 +49,7 @@ public class shark extends Entity implements Hitable{
 		// TODO Auto-generated method stub
 		for(int i = 0;i < Setting.ENEMY_NUMBER;i++) {
 			randomNumber = randomGenerator.nextInt(20) * 20;
-			enemies[i].setLayoutX(1100 + randomNumber);
+			enemies[i].setLayoutX(Setting.GAME_WIDTH+100 + randomNumber);
 			enemies[i].setLayoutY(randomNumber+80);
 			System.out.println("setPosition:"+i +" "+randomNumber/20);
 		}
@@ -59,13 +59,26 @@ public class shark extends Entity implements Hitable{
 	@Override
 	public void move() {
 		// TODO Auto-generated method stub
-		for(int i = 0; i < Setting.ENEMY_NUMBER;i++) {
-			enemies[i].setLayoutX(enemies[i].getLayoutX()-(i*velocity)/2-velocity);
-			try {
-				checkIfOutOfBorder(enemies[i]);
-			} catch (OutOfBorderException e) {
-				// TODO Auto-generated catch block
-				relocate(i);
+		if(Game.isClockActivated) {
+			for(int i = 0; i < Setting.ENEMY_NUMBER;i++) {
+				enemies[i].setLayoutX(enemies[i].getLayoutX()-(i*velocity)/10-velocity);
+				try {
+					checkIfOutOfBorder(enemies[i]);
+				} catch (OutOfBorderException e) {
+					// TODO Auto-generated catch block
+					relocate(i);
+				}
+			}
+			
+		}else{
+			for(int i = 0; i < Setting.ENEMY_NUMBER;i++) {
+				enemies[i].setLayoutX(enemies[i].getLayoutX()-(i*velocity)/2-velocity);
+				try {
+					checkIfOutOfBorder(enemies[i]);
+				} catch (OutOfBorderException e) {
+					// TODO Auto-generated catch block
+					relocate(i);
+				}
 			}
 		}
 	}
@@ -102,8 +115,7 @@ public class shark extends Entity implements Hitable{
 			for(int i = 0;i < Setting.ENEMY_NUMBER;i++) {
 				if(enemies[i].getBoundsInParent().intersects(((Missile) object).getMissile().getBoundsInParent())) {
 					relocate(i);
-					//AudioClip sound = new AudioClip(ClassLoader.getSystemResource("Torpedo+Explosion.mp3").toString());
-					//sound.play();
+					
 					((Missile)object).TIMER.stop();
 					PointsPane.points++;
 					PointsPane.updateScore();

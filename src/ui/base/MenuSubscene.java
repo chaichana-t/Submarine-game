@@ -22,7 +22,7 @@ public class MenuSubscene extends SubScene{
 		prefWidth(w);
 		prefHeight(h);
 		BackgroundImage imageBackground = new BackgroundImage(
-				new Image(ClassLoader.getSystemResource("blue_panel.png").toString(), h, w,
+				new Image(ClassLoader.getSystemResource("grey_panel.png").toString(), h, w,
 						false, true),
 				BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, null);
 		AnchorPane root = (AnchorPane) this.getRoot();

@@ -37,10 +37,10 @@ public class HowToPlaySubscene extends MenuSubscene {
 	}
 	
 	private void createBackButton() {
-		Resloader.exitButtonImg.setFitHeight(30);
-		Resloader.exitButtonImg.setFitWidth(30);
+		Resloader.exitButtonImg.setFitHeight(32);
+		Resloader.exitButtonImg.setFitWidth(32);
 		backButton = new Button("",Resloader.exitButtonImg);
-		backButton.setAlignment(Pos.CENTER_LEFT);
+		backButton.setAlignment(Pos.TOP_LEFT);
 		backButton.setStyle(" -fx-background-color: transparent; -fx-background-image: url('"+ ClassLoader.getSystemResource("blue_button11.png").toString() + "');");
 		backButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override

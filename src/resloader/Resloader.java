@@ -24,12 +24,16 @@ public class Resloader {
 	public static Image yellowShark;
 	public static Image greenShark;
 	public static Image bombShark;
+	
+	public static Image clockImg;
 
 	public static Image missile;
 
 	public static Image background;
 	
 	public static ImageView exitButtonImg;
+	
+	public static ImageView gameOverImg;
 	
 	public static ImageView logo;
 	public static ImageView howtoPlay;
@@ -51,6 +55,9 @@ public class Resloader {
 		
 		missile = new Image(ClassLoader.getSystemResource("missile.png").toString());
 		
+		clockImg = new Image(ClassLoader.getSystemResource("gem_slow.png").toString());
+		//gameOverImg = new ImageView(ClassLoader.getSystemResource("gameOver.png").toString());
+		
 		redShark = new Image(ClassLoader.getSystemResource("red_shark.png").toString());
 		pinkShark = new Image(ClassLoader.getSystemResource("pink_shark.png").toString());
 		blueShark = new Image(ClassLoader.getSystemResource("blue_shark.png").toString());
@@ -64,7 +71,7 @@ public class Resloader {
 		background = new Image(ClassLoader.getSystemResource("bg.jpg").toString());
 		menuBackgroundMusic = new AudioClip(ClassLoader.getSystemResource("backgroundMusic1.mp3").toString());
 		bombSound = new MediaPlayer(new Media(ClassLoader.getSystemResource("bombEx.wav").toString()));
-		missileExplosion = new AudioClip(ClassLoader.getSystemResource("Torpedo+Explosion.mp3").toString());
+		missileExplosion = new AudioClip(ClassLoader.getSystemResource("bombEx.wav").toString());
 	}
 
 }
