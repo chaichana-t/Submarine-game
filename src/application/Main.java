@@ -9,9 +9,7 @@ import scene.Menu;
 
 public class Main extends Application {
 	public static Stage MAIN_WINDOW;
-	public static Scene MENU_SCENE;
-	public static Scene GAME_SCENE;
-
+	
 	@Override
 	public void start(Stage primaryStage) {
 		// TODO Auto-generated method stub
@@ -29,9 +27,9 @@ public class Main extends Application {
 		launch(args);
 	}
 
-	@Override
+	/*@Override
 	public void stop() throws Exception {
 		Platform.exit();
 		System.exit(0);
-	}
+	}*/
 }

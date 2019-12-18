@@ -38,7 +38,7 @@ public class Resloader {
 	public static ImageView howtoPlay;
 	
 	public static AudioClip missileExplosion;
-	public static AudioClip menuBackgroundMusic;
+	public static MediaPlayer menuBackgroundMusic;
 	public static MediaPlayer bombSound;
 	public static AudioClip powerSound;
 
@@ -69,7 +69,9 @@ public class Resloader {
 		howtoPlay = new ImageView(ClassLoader.getSystemResource("howtoplay.png").toString());
 		
 		background = new Image(ClassLoader.getSystemResource("bg.jpg").toString());
-		menuBackgroundMusic = new AudioClip(ClassLoader.getSystemResource("backgroundMusic1.mp3").toString());
+		//System.out.println(ClassLoader.getSystemResource("backgroundMusic1.mp3").toString());
+		
+		menuBackgroundMusic = new MediaPlayer(new Media(ClassLoader.getSystemResource("backgroundmusic.mp3").toString()));
 		bombSound = new MediaPlayer(new Media(ClassLoader.getSystemResource("bombEx.wav").toString()));
 		missileExplosion = new AudioClip(ClassLoader.getSystemResource("cannon-fire-single-shot-blast.mp3").toString());
 		powerSound = new AudioClip(ClassLoader.getSystemResource("The Slow Mo Guys slow motion sound effect.mp3").toString());
