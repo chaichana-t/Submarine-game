@@ -56,7 +56,7 @@ public class Resloader {
 		missile = new Image(ClassLoader.getSystemResource("missile.png").toString());
 		
 		clockImg = new Image(ClassLoader.getSystemResource("gem_slow.png").toString());
-		//gameOverImg = new ImageView(ClassLoader.getSystemResource("gameOver.png").toString());
+		gameOverImg = new ImageView(ClassLoader.getSystemResource("textGameOver.png").toString());
 		
 		redShark = new Image(ClassLoader.getSystemResource("red_shark.png").toString());
 		pinkShark = new Image(ClassLoader.getSystemResource("pink_shark.png").toString());

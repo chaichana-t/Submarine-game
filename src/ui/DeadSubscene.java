@@ -14,7 +14,7 @@ import ui.base.MenuSubscene;
 
 public class DeadSubscene extends MenuSubscene{
 	
-	//private ImageView gameOver;
+	private ImageView gameOver;
 	private MenuButton backButton;
 	private MenuButton retryButton;
 	private HeaderLabel highestScoreLabel;
@@ -25,17 +25,19 @@ public class DeadSubscene extends MenuSubscene{
 		setLayoutY(25);
 		createBackButton();
 		createRetryButton();
-		//createGameover();
-		this.getPane().getChildren().addAll(backButton,retryButton/*,gameOver*/);
+		createGameover();
+		this.getPane().getChildren().addAll(backButton,retryButton,gameOver);
 		createHighestScoreLabel();
 		createCurrentScoreLabel();
 	}
 	
-	/*private void createGameover() {
+	private void createGameover() {
 		gameOver = Resloader.gameOverImg;
-		gameOver.setLayoutX(0);
-		gameOver.setLayoutY(0);
-	}*/
+		gameOver.setFitHeight(78);
+		gameOver.setFitWidth(400);
+		gameOver.setLayoutX(50);
+		gameOver.setLayoutY(50);
+	}
 	
 	
 	private void createBackButton() {
