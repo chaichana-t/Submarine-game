@@ -121,7 +121,6 @@ public class SlowClock extends Entity implements Hitable{
 			randomNumber = randomGenerator.nextInt(10)+5;
 			Game.timerLabel.showTimerPane();
 			randomNumber = randomGenerator.nextInt(10);
-			System.out.println(randomNumber);
 			threadInitialize();
 			Timer.start();
 		}

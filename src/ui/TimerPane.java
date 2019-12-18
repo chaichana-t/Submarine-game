@@ -45,7 +45,7 @@ public class TimerPane{
 							System.out.println(i);
 						}
 					}
-					System.out.println("Gem times out!");
+					System.out.println("Clock times out!");
 				} catch (InterruptedException e) {
 				}
 			}
