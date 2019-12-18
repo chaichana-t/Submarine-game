@@ -9,9 +9,6 @@ public class BackgroundPane extends Entity {
 
 	private Rectangle[] rects;
 
-	public BackgroundPane() {
-
-	}
 
 	@Override
 	public void setGc() {

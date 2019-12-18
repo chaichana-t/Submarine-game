@@ -22,7 +22,6 @@ public class Resloader {
 	public static Image blueShark;
 	public static Image yellowShark;
 	public static Image greenShark;
-	public static Image bombShark;
 	
 	public static Image clockImg;
 
@@ -63,7 +62,6 @@ public class Resloader {
 		blueShark = new Image(ClassLoader.getSystemResource("blue_shark.png").toString());
 		yellowShark = new Image(ClassLoader.getSystemResource("yellow_shark.png").toString());
 		greenShark = new Image(ClassLoader.getSystemResource("green_shark.png").toString());
-		bombShark = new Image(ClassLoader.getSystemResource("boom_shark.png").toString());
 		
 		logo = new ImageView(ClassLoader.getSystemResource("logo.png").toString());
 		howtoPlay = new ImageView(ClassLoader.getSystemResource("howtoplay.png").toString());

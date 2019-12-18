@@ -31,7 +31,7 @@ public class Game {
 	public static TimerPane timerLabel;
 	public static Shark enemies;
 	public static SlowClock clock;
-	public static Thread clockTimer;
+	//public static Thread clockTimer;
 	private boolean trigger;
 
 	private AnimationTimer animation;
@@ -46,7 +46,7 @@ public class Game {
 		createGameUI();
 		createKeyListener();
 		createGameLoop();
-		threadInitialize();
+		//threadInitialize();
 
 	}
 	
@@ -135,9 +135,9 @@ public class Game {
 		});
 	}
 	
-	public void threadInitialize() {
+	/*public void threadInitialize() {
 		
-	}
+	}*/
 	
 
 	public void createGameLoop() {
