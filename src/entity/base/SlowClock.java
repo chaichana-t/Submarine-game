@@ -136,22 +136,7 @@ public class SlowClock extends Entity implements Hitable{
 			}
 		});
 	}
-	
-	public void updateIsCalled() {
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					
-					Thread.sleep(randomNumber*1000);
-					isCalled = true;
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 	
 	public Rectangle getClock() {
 		return clock;
