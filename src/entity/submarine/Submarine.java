@@ -14,8 +14,8 @@ import scene.Game;
 
 public class Submarine extends Entity implements Shootable,Hitable {
 
-	protected boolean isAlive;
-	protected int velocity;
+	private boolean isAlive;
+	private int velocity;
 
 	private ImageView movingSubmarine1;
 	private ImageView movingSubmarine2;
